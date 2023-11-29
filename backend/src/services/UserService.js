@@ -5,29 +5,29 @@ import UserModel from "../models/User.js";
 class UserService {
 
     /** @method
-     * @name create - Создание статьи
-     * @param article - Объект статьи */
+     * @name create - Создание пользователя
+     * @param article - Объект пользователя */
     async create(article) {
         return UserModel.create(article);
     }
 
     /** @method
-     * @name get - Получение статьи
-     * @param id - Идентификатор статьи */
+     * @name get - Получение пользователя
+     * @param id - Идентификатор пользователя */
     async get(id) {
         return UserModel.findById(id);
     }
 
     /** @method
-     * @name list - Получение cписка всех статей */
+     * @name list - Получение cписка всех пользователей */
     async list(query) {
         // return UserModel.find()
         return import.meta
     }
 
     /** @method
-     * @name remove - Удаление статьи
-     * @param id - Идентификатор статьи */
+     * @name remove - Удаление пользователя
+     * @param id - Идентификатор пользователя */
     async remove(id) {
         return UserModel.findByIdAndDelete(id);
     }
