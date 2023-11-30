@@ -8,7 +8,7 @@ import logger from "../logger/logger.js";
  * @name connection - Подключение к базе данных */
 export default async function connection() {
     try {
-        await mongoose.connect("mongodb+srv://kirill:1234567890@cluster0.pgpraan.mongodb.net/");
+        await mongoose.connect("mongodb+srv://kiryushavoronin2004:XWHvgCNulkzd9LGF@namescluster.f5uou2k.mongodb.net/");
 
         logger.info("Database connection!");
     } catch ({ message }) {
