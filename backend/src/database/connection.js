@@ -8,13 +8,12 @@ import logger from "../logger/logger.js";
  * @name connection - Подключение к базе данных */
 export default async function connection() {
     try {
-        await mongoose.connect("mongodb://localhost:27017/Guide-names", {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-        });
+        await mongoose.connect("mongodb+srv://kirill:1234567890@cluster0.pgpraan.mongodb.net/");
 
         logger.info("Database connection!");
     } catch ({ message }) {
+        console.log(message)
         logger.fatal(message);
     }
 }
+
