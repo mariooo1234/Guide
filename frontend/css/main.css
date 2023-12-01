@@ -105,10 +105,10 @@ body {
   justify-content: space-between;
 }
 .sidebar {
-  position: absolute;
+  position: fixed;
   top: 105px;
   left: 0;
-  height: 100vw;
+  height: calc(100vh - 110px);
   width: 200px;
   box-shadow: 0 0 4px #999999;
   border-radius: 0 5px 0 0;
@@ -168,6 +168,10 @@ body {
   border-radius: 5px;
   border: 1px solid #999999;
   margin-left: 5px;
+}
+.articles-data-items {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 .articles-data-items-item {
   width: 95%;

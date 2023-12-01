@@ -21,8 +21,7 @@ class UserService {
     /** @method
      * @name list - Получение cписка всех пользователей */
     async list(query) {
-        // return UserModel.find()
-        return import.meta
+        return UserModel.find()
     }
 
     /** @method
