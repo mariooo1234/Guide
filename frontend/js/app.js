@@ -3,6 +3,7 @@ import http from "../http/http.js";
 const checkbox = document.getElementById("grid");
 const number = document.getElementById("number");
 const wrapper = document.getElementById("wrapper")
+
 const inputBlock = document.querySelector('.articles-addItem-inputBlock')
 const input = document.querySelector('.articles-addItem-inputBlock__input')
 const addButton = document.querySelector('.articles-addItem__btn')
@@ -10,6 +11,8 @@ const closeInputBtn = document.querySelector('.articles-addItem-inputBlock__tras
 const dataItems = document.querySelector('.articles-data-items')
 let newData = ''
 
+
+const popup = document.querySelector('.popup')
 
 gsap.registerPlugin(Flip)
 
@@ -27,6 +30,16 @@ users().then(({data}) => {
         newData += renderHTML(user)
         dataItems.innerHTML = newData;
     })
+    const dataItem = document.querySelectorAll('.articles-data-items-item')
+
+    dataItem.forEach((item) => {
+
+        item.addEventListener('click', () => {
+            popup.classList.add('open')
+            console.log("test")
+        })
+    })
+    console.log(dataItem)
 })
 
 const renderHTML = (user) => {
@@ -79,4 +92,5 @@ closeInputBtn.addEventListener('click', () => {
     inputBlock.classList.remove('active')
     input.value = ''
 })
+
 
