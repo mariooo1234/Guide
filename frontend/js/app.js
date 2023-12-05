@@ -26,11 +26,25 @@ let counter = 1
 
 users().then(({data}) => {
 
+
     data.forEach(user => {
         newData += renderHTML(user)
         dataItems.innerHTML = newData;
     })
     const dataItem = document.querySelectorAll('.articles-data-items-item')
+
+    const articles = document.querySelector('.articles-data')
+
+    const state = Flip.getState(articles);
+
+    articles.classList.add('articles-data__scale')
+
+    Flip.from(state, {
+        absolute: true,
+        duration: 1,
+        scale: true,
+        ease: "power2.inOut",
+    })
 
     dataItem.forEach((item) => {
 
@@ -53,7 +67,7 @@ const renderHTML = (user) => {
                     </div>`
 }
 
-number.addEventListener("change", ({ target: { value } }) => {
+number.addEventListener("change", ({target: {value}}) => {
     counter = value
 })
 
@@ -83,7 +97,7 @@ checkbox.addEventListener('change', ({target}) => {
 addButton.addEventListener('click', () => {
     if (input.value.length > 0) {
         console.log('test')
-    }else {
+    } else {
         inputBlock.classList.add('active')
     }
 })

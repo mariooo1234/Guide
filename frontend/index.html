@@ -29,15 +29,22 @@
         <div class="text">
             <h3 class="text__title">Статьи затрат</h3>
 
-            <input id="grid" type="checkbox" name="grid" checked>
-
-            <input class="number" type="number" name="number" id="number" min="1" max="4" value="1">
+            <button class="articles-addItem__btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg>
+            </button>
         </div>
 
         <div class="articles">
             <div class="articles-tools">
                 <input placeholder="Введите текст" class="articles-tools__search" type="search">
                 <button class="articles-tools__btn"></button>
+
+                <input id="grid" type="checkbox" name="grid" checked>
+
+                <input class="number" type="number" name="number" id="number" min="1" max="4" value="1">
                 <div class="articles-tools-sort">
                     <p class="articles-tools-sort__text">Сортировка: </p>
                     <div class="articles-tools-sort-list">
@@ -52,9 +59,7 @@
             </div>
 
             <div class="articles-data">
-                <div class="articles-data-items" id="wrapper">
-
-                </div>
+                <div class="articles-data-items" id="wrapper"></div>
             </div>
 
             <div class="articles-addItem">
@@ -67,12 +72,6 @@
                         </svg>
                     </div>
                 </div>
-                <button class="articles-addItem__btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                         class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-                    </svg>
-                </button>
             </div>
         </div>
     </div>

@@ -121,13 +121,13 @@ body {
 
 .text {
   border-bottom: 1px solid #999999;
-  height: 100px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
 }
 .text__title {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   font-weight: 500;
   font-size: 25px;
 }
@@ -168,6 +168,12 @@ body {
   border-radius: 5px;
   border: 1px solid #999999;
   margin-left: 5px;
+}
+.articles-data {
+  transform: scale(0.5);
+}
+.articles-data__scale {
+  transform: scale(1);
 }
 .articles-data-items {
   display: grid;
@@ -236,6 +242,13 @@ body {
   border-radius: 5px;
   background-color: #fff;
   border: 1px solid grey;
+  transition: background-color 0.25s linear;
+}
+.articles-addItem__btn:hover {
+  background-color: aliceblue;
+}
+.articles-addItem__btn:hover svg {
+  transform: rotate(180deg);
 }
 
 .popup {
