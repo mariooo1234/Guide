@@ -23,19 +23,20 @@ const users = async () => {
 }
 
 let counter = 1
-
 //656a1954322ca87e4bf35b9e
 
 users().then(({data}) => {
 
-    data.forEach(user => {
+    data.forEach((user, idx) => {
         newData += renderHTML(user)
         dataItems.innerHTML = newData;
     })
-    const dataItem = document.querySelectorAll('.articles-data-items-item')
+
+    let dataItem = document.querySelectorAll('.articles-data-items-item')
+
+    gsap.to(dataItem, {opacity: 1, stagger: 0.1, left: 0, duration: 0.25})
 
     dataItem.forEach((item) => {
-
         item.addEventListener('click', () => {
             popup.classList.add('open')
             data.forEach(user => {
@@ -47,6 +48,9 @@ users().then(({data}) => {
         })
     })
 })
+
+
+
 const renderHTML = (user) => {
     return `<div class="articles-data-items-item" id="${user._id}">${user.surname + ' ' + user.name + ' ' + user.patronymic}
                         <div class="articles-data-items-item__trash">
@@ -111,11 +115,13 @@ addButton.addEventListener('click', () => {
         console.log('test')
     }else {
         inputBlock.classList.add('active')
+        gsap.to(inputBlock, {opacity: 1, left: 0, duration: 0.25})
     }
 })
 
 closeInputBtn.addEventListener('click', () => {
     inputBlock.classList.remove('active')
+    gsap.to(inputBlock, {opacity: 0, left: -50, duration: 0.25})
     input.value = ''
 })
 

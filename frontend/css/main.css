@@ -169,12 +169,6 @@ body {
   border: 1px solid #999999;
   margin-left: 5px;
 }
-.articles-data {
-  transform: scale(0.5);
-}
-.articles-data__scale {
-  transform: scale(1);
-}
 .articles-data-items {
   display: grid;
   gap: 0 20px;
@@ -186,6 +180,8 @@ body {
   align-items: center;
   position: relative;
   width: 100%;
+  opacity: 0;
+  left: -100px;
   padding: 0 10px;
   border-radius: 5px;
   border: 1px solid black;
@@ -205,7 +201,8 @@ body {
 }
 .articles-addItem-inputBlock {
   position: relative;
-  display: none;
+  left: -50px;
+  opacity: 0;
 }
 .articles-addItem-inputBlock.active {
   display: flex;
@@ -311,6 +308,7 @@ body {
   align-items: center;
   position: relative;
   width: 100%;
+  opacity: 0;
   padding: 0 10px;
   border-radius: 5px;
   border: 1px solid black;

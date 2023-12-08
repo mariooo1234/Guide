@@ -114,13 +114,6 @@ body {
   }
 
   &-data {
-    transform: scale(0.5);
-
-    &__scale {
-      transform: scale(1);
-    }
-
-
     &-items {
       display: grid;
       gap: 0 20px;
@@ -132,6 +125,8 @@ body {
         align-items: center;
         position: relative;
         width: 100%;
+        opacity: 0;
+        left: -100px;
         padding: 0 10px;
         border-radius: 5px;
         border: 1px solid black;
@@ -155,7 +150,8 @@ body {
 
     &-inputBlock {
       position: relative;
-      display: none;
+      left: -50px;
+      opacity: 0;
 
       &.active {
         display: flex;
@@ -277,6 +273,7 @@ body {
         align-items: center;
         position: relative;
         width: 100%;
+        opacity: 0;
         padding: 0 10px;
         border-radius: 5px;
         border: 1px solid black;
