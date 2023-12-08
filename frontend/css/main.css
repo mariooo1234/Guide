@@ -259,7 +259,6 @@ body {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: rgba(1, 1, 1, 0.6);
   transition: all 0.4s ease-in-out;
 }
 .popup.open {
@@ -268,16 +267,67 @@ body {
 }
 .popup.open .popup-card {
   top: 50%;
-  transform: rotateY(-50%);
+  transform: translate(-50%, -50%);
 }
 .popup-card {
-  width: 400px;
-  height: 600px;
+  width: 500px;
+  height: auto;
   background-color: #fff;
   top: -200%;
   left: 50%;
-  transform: translate(-50% -50%);
   position: absolute;
+  border-radius: 10px;
+  box-shadow: 0 25px 100px #999999;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.popup-card__photo {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  border: 1px solid black;
+  background: url("../img/logo.jpeg") no-repeat center;
+  background-size: cover;
+  margin-bottom: 30px;
+}
+.popup-card__FIO {
+  font-size: 20px;
+  text-align: center;
+}
+.popup-card-details {
+  width: 100%;
+  height: auto;
+  border-top: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+  margin: 30px 0;
+  padding: 20px 0;
+}
+.popup-card-details-item {
+  height: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.popup-card-btns {
+  display: block;
+  width: 100%;
+}
+.popup-card-btns button {
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  background-color: grey;
+  border: 1px solid black;
+}
+.popup-card-btns button:not(:last-child) {
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=main.css.map */
