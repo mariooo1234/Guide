@@ -25,7 +25,7 @@ gsap.registerPlugin(Flip)
 let counter = 1
 //656a1954322ca87e4bf35b9e
 
-UserService.users.list("656a1954322ca87e4bf35b9e").then(({ data }) => {
+UserService.users.list().then(({ data }) => {
 
     data.forEach((user, idx) => {
         newData += renderHTML(user)
