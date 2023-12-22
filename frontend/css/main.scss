@@ -244,14 +244,19 @@ body {
     align-items: center;
 
     &__photo {
+      color: #ffffff;
       border-radius: 50%;
       height: 150px;
       width: 150px;
-      border: 1px solid black;
-      background: url("../img/icons/person.svg") no-repeat center;
+      //border: 1px solid black;
+      //background: url("../img/icons/person.svg") no-repeat center;
       background-size: cover;
       margin-bottom: 30px;
       text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 70px;
     }
 
     &__FIO {
@@ -274,10 +279,17 @@ body {
         align-items: center;
         position: relative;
         width: 100%;
-        opacity: 0;
         padding: 0 10px;
         border-radius: 5px;
         border: 1px solid black;
+
+        &::placeholder {
+          color: black;
+        }
+
+        &:disabled {
+          background-color: inherit;
+        }
       }
     }
 

@@ -281,14 +281,17 @@ body {
   align-items: center;
 }
 .popup-card__photo {
+  color: #ffffff;
   border-radius: 50%;
   height: 150px;
   width: 150px;
-  border: 1px solid black;
-  background: url("../img/icons/person.svg") no-repeat center;
   background-size: cover;
   margin-bottom: 30px;
   text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
 }
 .popup-card__FIO {
   font-size: 20px;
@@ -309,10 +312,15 @@ body {
   align-items: center;
   position: relative;
   width: 100%;
-  opacity: 0;
   padding: 0 10px;
   border-radius: 5px;
   border: 1px solid black;
+}
+.popup-card-details-item::placeholder {
+  color: black;
+}
+.popup-card-details-item:disabled {
+  background-color: inherit;
 }
 .popup-card-btns {
   display: block;

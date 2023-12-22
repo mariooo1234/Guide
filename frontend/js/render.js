@@ -1,8 +1,14 @@
 const colorUser = {
-    red: ["а","б","в", "a","b","c"],
-    green: ["г","д","е", "d","e","f"],
-    yellow: ["ё","ж","з", "g","h","i"],
-    blue: ["и","к","д", "j","k","l"],
+    '#A3C1AD': ["а","б","в", "a","b","c"],
+    '#50C878': ["г","д","е", "d","e","f"],
+    '#0076CE': ["ё","ж","з", "g","h","i"],
+    '#99FFFF': ["и","й","к", "j","k","l"],
+    '#6B8E23': ["л","м","н", "m","n","o"],
+    '#D0F0C0': ["о","п","р", "p","q","r"],
+    '#F0E68C': ["с","т","у", "s","t","u"],
+    '#F88379': ["ф","х","ц", "v","w","x"],
+    '#DB7093': ["ч","ш","щ", "y",],
+    '#E6E6FA': ["ы","э","я", "z",],
 }
 
 const renderHTML = (user) => {
@@ -20,21 +26,33 @@ const renderCardHTML = (user) => {
     // let logoURL = user.photo || "../img/icons/person.svg"
     let logoBack = ''
     for (let key in colorUser) {
-        console.log(colorUser[key].includes(user.name[0]))
-
         if (colorUser[key].includes(user.name[0].toLowerCase())) {
-            logoBack = colorkey
-            console.log(key)
+            logoBack = key
         }
     }
-    console.log(logoBack)
-    return `<div class="popup-card__photo" style="background-color: ">${user.name[0]}</div>
+
+    return `<div class="popup-card__photo" style="background-color: ${logoBack}">${user.name[0]}</div>
         <p class="popup-card__FIO">${user.surname + " " + user.name}<br> ${user.patronymic}</p>
         <div class="popup-card-details">
-            <p>Возраст:</p>
-            <div class="popup-card-details-item">${user.age}</div>
-            <p>id:</p>
-            <div class="popup-card-details-item">${user._id}</div>
+            <label for="age">Возраст:</label>
+            <input disabled id="age" class="popup-card-details-item" placeholder="${user.age}">
+            <label for="id">id:</label>
+            <input disabled id="id" class="popup-card-details-item" placeholder="${user._id}">
+        </div>
+        <div class="popup-card-btns">
+            <button class="popup-card-btns__refactor">Редактировать</button>
+            <button class="popup-card-btns__delete">Удалить</button>
+        </div>`
+}
+
+const renderNewCardHTML = (user) => {
+    return `<div class="popup-card__photo" style="background-color: ${logoBack}">${user.name[0]}</div>
+        <p class="popup-card__FIO">${user.surname + " " + user.name}<br> ${user.patronymic}</p>
+        <div class="popup-card-details">
+            <label for="age">Возраст:</label>
+            <input id="age" class="popup-card-details-item" placeholder="${user.age}">
+            <label for="id">id:</label>
+            <input id="id" class="popup-card-details-item" placeholder="${user._id}">
         </div>
         <div class="popup-card-btns">
             <button class="popup-card-btns__refactor">Редактировать</button>
