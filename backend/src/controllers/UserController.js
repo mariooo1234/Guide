@@ -40,6 +40,16 @@ class UserController {
             res.status(500).json(e);
         }
     }
+
+    async update (req, res) {
+        try {
+            await UserService.remove(req.params.id);
+
+            res.status(200);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
 }
 
 export default new UserController();
