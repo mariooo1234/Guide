@@ -25,39 +25,75 @@ const renderHTML = (user) => {
 
 const renderCardHTML = (user) => {
 	// let logoURL = user.photo || "../img/icons/person.svg"
-	const firstCharacter = user.name[0].toLowerCase();
+	const firstCharacter = user.name[0];
 
 	const [colorKey] = Object.entries(colorUser).find(([_, value]) => {
-		return value.includes(firstCharacter);
+		return value.includes(firstCharacter.toLowerCase());
 	});
 
-	return `<div class="popup-card__photo" style="background-color: ${colorKey}">${user.name[0]}</div>
+	return `<div class="popup-card__photo" style="background-color: ${colorKey}">${firstCharacter}</div>
         <p class="popup-card__FIO">${user.surname + ' ' + user.name}<br> ${user.patronymic}</p>
         <div class="popup-card-details">
             <label for="age">Возраст:</label>
             <input disabled id="age" class="popup-card-details-item" placeholder="${user.age}">
-            <label for="id">id:</label>
-            <input disabled id="id" class="popup-card-details-item" placeholder="${user._id}">
+            <label for="address">Адрес:</label>
+            <input disabled id="address" class="popup-card-details-item" placeholder="${user.address}">
+            <label for="post">Должность:</label>
+            <input disabled id="post" class="popup-card-details-item" placeholder="${user.post}">
         </div>
         <div class="popup-card-btns">
-            <button class="popup-card-btns__refactor">Редактировать</button>
+            <button id="${user._id}" class="popup-card-btns__refactor">Редактировать</button>
             <button class="popup-card-btns__delete">Удалить</button>
         </div>`;
 };
 
-const renderNewCardHTML = (user) => {
-	return `<div class="popup-card__photo" style="background-color: ${logoBack}">${user.name[0]}</div>
-        <p class="popup-card__FIO">${user.surname + ' ' + user.name}<br> ${user.patronymic}</p>
+const renderRefactorCardHTML = (user) => {
+	const firstCharacter = user.name[0];
+
+	const [colorKey] = Object.entries(colorUser).find(([_, value]) => {
+		return value.includes(firstCharacter.toLowerCase());
+	});
+	return `<div class="popup-card__photo" style="background-color: ${colorKey}">${firstCharacter}</div>
         <div class="popup-card-details">
+        	<label for="surname">Фамилия:</label>
+            <input id="surname" class="popup-card-details-item" placeholder="${user.surname}">
+            <label for="name">Имя:</label>
+            <input id="name" class="popup-card-details-item" placeholder="${user.name}">
+            <label for="patronymic">Отчетсво:</label>
+            <input id="patronymic" class="popup-card-details-item" placeholder="${user.patronymic}">
             <label for="age">Возраст:</label>
             <input id="age" class="popup-card-details-item" placeholder="${user.age}">
-            <label for="id">id:</label>
-            <input id="id" class="popup-card-details-item" placeholder="${user._id}">
+            <label for="address">Адрес:</label>
+            <input id="address" class="popup-card-details-item" placeholder="${user.address}">
+            <label for="post">Должность:</label>
+            <input id="post" class="popup-card-details-item" placeholder="${user.post}">
         </div>
         <div class="popup-card-btns">
-            <button class="popup-card-btns__refactor">Редактировать</button>
-            <button class="popup-card-btns__delete">Удалить</button>
+        	<button class="popup-card-btns__save">Сохранить</button>
+            <button class="popup-card-btns__cansel">Отмена</button>
         </div>`;
 };
 
-export {renderCardHTML, renderHTML};
+const renderNewCardHTML = () => {
+	return `<h3 style="font-size: 30px">Добавление нового пользователя</h3>
+		<div class="popup-card-details">
+        	<label for="surname">Фамилия:</label>
+            <input id="surname" class="popup-card-details-item">
+            <label for="name">Имя:</label>
+            <input id="name" class="popup-card-details-item"">
+            <label for="patronymic">Отчетсво:</label>
+            <input id="patronymic" class="popup-card-details-item">
+            <label for="age">Возраст:</label>
+            <input id="age" class="popup-card-details-item">
+            <label for="address">Адрес:</label>
+            <input id="address" class="popup-card-details-item">
+            <label for="post">Должность:</label>
+            <input id="post" class="popup-card-details-item">
+        </div>
+        <div class="popup-card-btns">
+        	<button class="popup-card-btns__save">Сохранить</button>
+            <button class="popup-card-btns__cansel">Отмена</button>
+        </div>`;
+};
+
+export {renderCardHTML, renderHTML, renderRefactorCardHTML, renderNewCardHTML};

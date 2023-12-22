@@ -270,7 +270,7 @@ body {
       border-top: 1px solid #999999;
       border-bottom: 1px solid #999999;
       margin: 30px 0;
-      padding: 20px 0;
+      padding: 20px 10px;
 
       &-item {
         height: 30px;
@@ -294,14 +294,23 @@ body {
     }
 
     &-btns {
-      display: block;
+      display: flex;
+      justify-content: space-around;
+
       width: 100%;
 
+      &__refactor, &__save{
+        background-color: #87CEEB;
+      }
+
+      &__delete, &__cansel {
+        background-color: #F08080;
+      }
+
       & button {
-        width: 100%;
+        width: 200px;
         height: 30px;
-        border-radius: 10px;
-        background-color: grey;
+        border-radius: 5px;
         border: 1px solid black;
 
         &:not(:last-child) {
