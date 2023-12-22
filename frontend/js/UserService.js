@@ -16,7 +16,7 @@ class UserService {
             },
             create: (payload) => http.post(this.path.users(), payload),
             remove: (id) => http.delete( `${this.path.users()}/${id}` ),
-            update: (id) => http.update( `${this.path.users()}/${id}` ),
+            update: (id) => http.put( `${this.path.users()}/${id}` ),
         }
     }
 }
