@@ -7,28 +7,35 @@ class UserService {
     /** @method
      * @name create - Создание пользователя
      * @param article - Объект пользователя */
-    async create(article) {
+    create(article) {
         return UserModel.create(article);
     }
 
     /** @method
      * @name get - Получение пользователя
      * @param id - Идентификатор пользователя */
-    async get(id) {
+    get(id) {
         return UserModel.findById(id);
     }
 
     /** @method
      * @name list - Получение cписка всех пользователей */
-    async list(query) {
+    list(query) {
         return UserModel.find()
     }
 
     /** @method
      * @name remove - Удаление пользователя
      * @param id - Идентификатор пользователя */
-    async remove(id) {
+    remove(id) {
         return UserModel.findByIdAndDelete(id);
+    }
+
+    /** @method
+     * @name update - Удаление пользователя
+     * @param id - Идентификатор пользователя */
+    update(id) {
+        return UserModel.findByIdAndUpdate(id)
     }
 }
 
