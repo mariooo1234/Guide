@@ -33,9 +33,10 @@ class UserService {
 
     /** @method
      * @name update - Удаление пользователя
-     * @param id - Идентификатор пользователя */
-    update(id) {
-        return UserModel.findByIdAndUpdate(id)
+     * @param id - Идентификатор пользователя
+     * @param payload - Обновляемые параметры */
+    update(id, payload) {
+        return UserModel.findByIdAndUpdate(id, payload)
     }
 }
 

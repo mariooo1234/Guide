@@ -21,7 +21,7 @@ const card = document.querySelector('.popup-card')
 gsap.registerPlugin(Flip)
 
 
-
+//UserService.users.update("656a1954322ca87e4bf35b9e", { name: 'Ivan' }) Пример обновления
 let counter = 1
 //656a1954322ca87e4bf35b9e
 

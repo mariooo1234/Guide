@@ -43,9 +43,10 @@ class UserController {
 
     async update (req, res) {
         try {
-            await UserService.remove(req.params.id);
+            const user = await UserService.update(req.params.id, req.body);
 
             res.status(200);
+            res.send(user);
         } catch (e) {
             res.status(500).json(e);
         }
