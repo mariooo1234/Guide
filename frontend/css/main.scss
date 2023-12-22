@@ -248,9 +248,10 @@ body {
       height: 150px;
       width: 150px;
       border: 1px solid black;
-      background: url("../img/logo.jpeg") no-repeat center;
+      background: url("../img/icons/person.svg") no-repeat center;
       background-size: cover;
       margin-bottom: 30px;
+      text-transform: uppercase;
     }
 
     &__FIO {
