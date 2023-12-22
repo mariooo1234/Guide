@@ -12,14 +12,15 @@ class UserService {
         return {
             get: (id) => http.get( `${this.path.users()}/${id}` ),
             list: (id) => {
-                console.log( `${this.path.users()}/${id}`)
                 return http.get(this.path.users())
             },
             create: (payload) => http.post(this.path.users(), payload),
-            remove: (id) => http.delete( `${this.path.users()}/${id}` )
-
+            remove: (id) => http.delete( `${this.path.users()}/${id}` ),
+            update: (id) => http.update( `${this.path.users()}/${id}` ),
         }
     }
 }
+
+
 
 export default new UserService()
