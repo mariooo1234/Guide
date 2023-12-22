@@ -1,7 +1,6 @@
 import UserService from "./UserService.js";
 import {renderHTML, renderCardHTML} from "./render.js"
 
-
 const checkbox = document.getElementById("grid");
 const number = document.getElementById("number");
 const wrapper = document.getElementById("wrapper")
