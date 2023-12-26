@@ -4,7 +4,6 @@ class UserService {
 	get path() {
 		return {
 			users: () => 'api/users'
-
 		};
 	}
 
