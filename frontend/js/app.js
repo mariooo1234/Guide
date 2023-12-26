@@ -1,15 +1,15 @@
 import UserService from './UserService.js';
 import {renderHTML, renderCardHTML, renderRefactorCardHTML, renderNewCardHTML} from './render.js';
 
-const checkbox = document.getElementById('grid');
+const checkbox = document.getElementById('checkbox');
 const number = document.getElementById('number');
 const wrapper = document.getElementById('wrapper');
 
-const inputBlock = document.querySelector('.articles-addItem-inputBlock');
-const input = document.querySelector('.articles-addItem-inputBlock__input');
-const addButton = document.querySelector('.articles-addItem__btn');
-const closeInputBtn = document.querySelector('.articles-addItem-inputBlock__trash');
-const dataItems = document.querySelector('.articles-data-items');
+const inputBlock = document.querySelector('.users-addItem-inputBlock');
+const input = document.querySelector('.users-addItem-inputBlock__input');
+const addButton = document.querySelector('.preview__title-btn');
+const closeInputBtn = document.querySelector('.users-addItem-inputBlock__trash');
+const dataItems = document.querySelector('.users-data-items');
 let newData = '';
 let newCard = '';
 
@@ -34,7 +34,7 @@ UserService.users.list().then(({ data }) => {
 		dataItems.innerHTML = newData;
 	});
 
-	let dataItem = document.querySelectorAll('.articles-data-items-item');
+	let dataItem = document.querySelectorAll('.users-data-items-item');
 
 	gsap.to(dataItem, {opacity: 1, stagger: 0.1, left: 0, duration: 0.25});
 
@@ -96,7 +96,7 @@ number.addEventListener('change', ({ target: { value } }) => {
 });
 
 checkbox.addEventListener('change', ({target}) => {
-	const state = Flip.getState('.articles-data-items-item');
+	const state = Flip.getState('.users-data-items-item');
 	let str = '';
 	for (let i = 1; i <= counter; i++) {
 		str += '1fr ';

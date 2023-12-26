@@ -23,9 +23,9 @@ class UserController {
 
     async list(req, res) {
         try {
-            const articles = await UserService.list(req.query);
+            const users = await UserService.list(req.query);
 
-            res.json(articles);
+            res.json(users);
         } catch (e) {
             res.status(500).json(e);
         }
