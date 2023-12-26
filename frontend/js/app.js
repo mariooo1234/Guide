@@ -1,5 +1,6 @@
 import UserService from './UserService.js';
 import {renderHTML, renderCardHTML, renderRefactorCardHTML, renderNewCardHTML} from './render.js';
+import userService from './UserService.js';
 
 const checkbox = document.getElementById('grid');
 const number = document.getElementById('number');
@@ -16,8 +17,7 @@ let newCard = '';
 const popup = document.querySelector('.popup');
 const card = document.querySelector('.popup-card');
 
-const inputsData = document.querySelectorAll('.popup-card-details-item');
-
+const loader = document.querySelector('.loader');
 
 
 gsap.registerPlugin(Flip);
@@ -28,6 +28,7 @@ let counter = 1;
 //656a1954322ca87e4bf35b9e
 
 UserService.users.list().then(({ data }) => {
+	dataItems.innerHTML = '';
 
 	data.forEach((user, idx) => {
 		newData += renderHTML(user);
@@ -47,6 +48,8 @@ UserService.users.list().then(({ data }) => {
 					card.innerHTML = newCard;
 
 					toOpenRefactorCard(user);
+
+					toDeleteUser();
 				}
 			});
 
@@ -65,13 +68,15 @@ const refactorCard = (user) => {
 			newUserData[input.id] = input.value || input.placeholder;
 		});
 
-		UserService.users.update(user._id, newUserData);
+		UserService.users.update(user._id, newUserData).then(( {data} ) => {
+			console.log(data);
+		});
 
-		location.reload();
+
 	});
 };
 
-/** @callback - Обработчик кнопки редактирования данных пользователя */
+/** @callback - Обработчик кнопки открытия карточки редактирования данных пользователя */
 const toOpenRefactorCard = (user) => {
 	const refactorBtn = document.querySelector('.popup-card-btns__refactor');
 	refactorBtn.addEventListener('click', () => {
@@ -82,11 +87,22 @@ const toOpenRefactorCard = (user) => {
 	});
 };
 
+const toDeleteUser = () => {
+	const deleteBtn = document.querySelector('.popup-card-btns__delete');
+	let idUser = deleteBtn.id;
+	deleteBtn.addEventListener('click', () => {
+		if (confirm('Вы уверены что хотите удалить этого пользователя?')) userService.users.remove(idUser);
+
+		location.reload();
+	});
+};
+
 
 /** @callback - Обработчик  закрытия popup-окна */
 popup.addEventListener('click', ({ target }) => {
 	if (!target.closest('.popup-card') && !target.closest('.popup-card-btns') || target.closest('.popup-card-btns__cansel')) {
 		popup.classList.remove('open');
+		card.innerHTML = '';
 	}
 });
 
