@@ -31,7 +31,7 @@ const renderCardHTML = (user) => {
 		return value.includes(firstCharacter.toLowerCase());
 	});
 
-	return `<div class="popup-card__photo" style="background-color: ${colorKey}">${firstCharacter}</div>
+	return `<div class="popup-card__photo" style="background-color: ${colorKey || '#E6E6FA'}">${firstCharacter}</div>
         <p class="popup-card__FIO">${user.surname + ' ' + user.name}<br> ${user.patronymic}</p>
         <div class="popup-card-details">
             <label for="age">Возраст:</label>
@@ -43,7 +43,7 @@ const renderCardHTML = (user) => {
         </div>
         <div class="popup-card-btns">
             <button id="${user._id}" class="popup-card-btns__refactor">Редактировать</button>
-            <button class="popup-card-btns__delete">Удалить</button>
+            <button id="${user._id}" class="popup-card-btns__delete">Удалить</button>
         </div>`;
 };
 
@@ -53,14 +53,14 @@ const renderRefactorCardHTML = (user) => {
 	const [colorKey] = Object.entries(colorUser).find(([_, value]) => {
 		return value.includes(firstCharacter.toLowerCase());
 	});
-	return `<div class="popup-card__photo" style="background-color: ${colorKey}">${firstCharacter}</div>
+	return `<div class="popup-card__photo" style="background-color: ${colorKey || '#E6E6FA'}">${firstCharacter}</div>
         <div class="popup-card-details">
         	<label for="surname">Фамилия:</label>
-            <input id="surname" class="popup-card-details-item" placeholder="${user.surname}">
+            <input id="surname" class="popup-card-details-item" placeholder="${user.surname}" oninput="if(/[^a-zA-Z]/.test(this.value)){let Selection = this.selectionStart-1;this.value=this.value.replace(/[^a-zA-Z]/g,'');this.setSelectionRange(Selection, Selection);}">
             <label for="name">Имя:</label>
-            <input id="name" class="popup-card-details-item" placeholder="${user.name}">
+            <input id="name" class="popup-card-details-item" placeholder="${user.name}" oninput="if(/[^a-zA-Z]/.test(this.value)){let Selection = this.selectionStart-1;this.value=this.value.replace(/[^a-zA-Z]/g,'');this.setSelectionRange(Selection, Selection);}">
             <label for="patronymic">Отчетсво:</label>
-            <input id="patronymic" class="popup-card-details-item" placeholder="${user.patronymic}">
+            <input id="patronymic" class="popup-card-details-item" placeholder="${user.patronymic}" oninput="if(/[^a-zA-Z]/.test(this.value)){let Selection = this.selectionStart-1;this.value=this.value.replace(/[^a-zA-Z]/g,'');this.setSelectionRange(Selection, Selection);}">
             <label for="age">Возраст:</label>
             <input id="age" class="popup-card-details-item" placeholder="${user.age}">
             <label for="address">Адрес:</label>
@@ -78,11 +78,11 @@ const renderNewCardHTML = () => {
 	return `<h3 style="font-size: 30px">Добавление нового пользователя</h3>
 		<div class="popup-card-details">
         	<label for="surname">Фамилия:</label>
-            <input id="surname" class="popup-card-details-item">
+            <input id="surname" class="popup-card-details-item" oninput="if(/[^a-zA-Z]/.test(this.value)){let Selection = this.selectionStart-1;this.value=this.value.replace(/[^a-zA-Z]/g,'');this.setSelectionRange(Selection, Selection);}">
             <label for="name">Имя:</label>
-            <input id="name" class="popup-card-details-item"">
+            <input id="name" class="popup-card-details-item" oninput="if(/[^a-zA-Z]/.test(this.value)){let Selection = this.selectionStart-1;this.value=this.value.replace(/[^a-zA-Z]/g,'');this.setSelectionRange(Selection, Selection);}">
             <label for="patronymic">Отчетсво:</label>
-            <input id="patronymic" class="popup-card-details-item">
+            <input id="patronymic" class="popup-card-details-item" oninput="if(/[^a-zA-Z]/.test(this.value)){let Selection = this.selectionStart-1;this.value=this.value.replace(/[^a-zA-Z]/g,'');this.setSelectionRange(Selection, Selection);}">
             <label for="age">Возраст:</label>
             <input id="age" class="popup-card-details-item">
             <label for="address">Адрес:</label>

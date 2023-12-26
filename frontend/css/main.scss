@@ -350,6 +350,81 @@ main {
   position: relative;
 }
 
+  &-data {
+    &-items {
+      display: grid;
+      gap: 0 20px;
+
+      & span {
+        margin: auto;
+      }
+
+      &-item {
+        height: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        opacity: 0;
+        left: -100px;
+        padding: 0 10px;
+        border-radius: 5px;
+        border: 1px solid black;
+
+        &__trash {
+          width: 30px;
+          height: 30px;
+          right: 0;
+          cursor: pointer;
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  &-addItem {
+    display: block;
+
+    &-inputBlock {
+      position: relative;
+      left: -50px;
+      opacity: 0;
+
+      &.active {
+        display: flex;
+      }
+
+      &__input {
+        width: 100%;
+        height: 30px;
+        padding: 0 10px;
+        background-color: #ffcfcf;
+        border-radius: 5px;
+        border: 1px solid black;
+        margin-bottom: 20px;
+
+
+        &:not(:placeholder-shown) {
+          background-color: white;
+        }
+      }
+
+      &__trash {
+        width: 30px;
+        height: 30px;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
 .users-tools-sort-dropdown * {
   /*display: flex;*/
   /*flex-flow: column nowrap;*/
@@ -599,3 +674,24 @@ main {
 
 
 /*# sourceMappingURL=main.css.map */
+
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 2px solid transparent;
+  border-bottom-color: black;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
