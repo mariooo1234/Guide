@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&family=Montserrat:ital,wght@0,400;1,200;1,300&family=Roboto:wght@300;400;500&display=swap");
+
+/* Reset and base styles  */
 * {
   padding: 0;
   margin: 0;
@@ -150,6 +152,26 @@ main {
   font-size: 40px;
 }
 
+.preview__title-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid grey;
+  transition: background-color 0.25s linear;
+}
+
+.preview__title-btn:hover {
+  background-color: aliceblue;
+}
+
+.preview__title-btn:hover svg {
+  transform: rotate(180deg);
+}
+
 .users-tools {
   display: flex;
   margin: 30px 0;
@@ -253,6 +275,19 @@ main {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   background: #26e826;
+}
+
+.users-tools__input-number-block {
+  position: absolute;
+  transform: translate(-50% -50%);
+  top: 50%;
+  left: 50%;
+  display: flex;
+  background-color: yellow;
+}
+
+.users-tools__input-number {
+  appearance: textfield;
 }
 
 .users-tools-sort {
@@ -647,7 +682,6 @@ main {
 .popup-card-btns button:not(:last-child) {
   margin-bottom: 20px;
 }
-
 
 .loader {
   width: 40px;
