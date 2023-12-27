@@ -65,7 +65,9 @@ const refactorCard = (user) => {
 	
 	saveBtn.addEventListener('click',() => {
 		inputsData.forEach((input) => {
-			newUserData[input.id] = input.value || input.placeholder;
+			let inputValue = '';
+			input.value.length > 0 ? inputValue = input.value.replace(input.value[0], input.value[0].toUpperCase()) : inputValue = input.placeholder;
+			newUserData[input.id] = inputValue || input.placeholder;
 		});
 
 		UserService.users.update(user._id, newUserData).then(( {data} ) => {
