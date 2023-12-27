@@ -279,16 +279,42 @@ main {
 }
 
 .users-tools__input-number-block {
-  position: absolute;
-  transform: translate(-50% -50%);
-  top: 50%;
-  left: 50%;
   display: flex;
-  background-color: yellow;
+  background-color: #ffffff;
+  height: 40px;
 }
 
 .users-tools__input-number {
   appearance: textfield;
+  text-align: center;
+  font-size: 20px;
+  border: none;
+  background-color:  #786dde;
+  color: #202030;
+}
+
+.users-tools__input-number::-webkit-outer-spin-button,
+.users-tools__input-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.users-tools__input-number-block button {
+  color: #3264fe;
+  background-color:  #786dde;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.users-tools__input-number__btn-dec {
+  padding: 15px 5px 15px 25px;
+  border-radius: 45px 0 0 45px;
+}
+
+.users-tools__input-number__btn-inc {
+  padding: 15px 25px 15px 5px;
+  border-radius: 0 45px 45px 0;
 }
 
 .users-tools-sort {
