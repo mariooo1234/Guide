@@ -22,22 +22,18 @@ const loader = document.querySelector('.loader');
 
 gsap.registerPlugin(Flip);
 
-
-//UserService.users.update("656a1954322ca87e4bf35b9e", { name: 'Ivan' }) Пример обновления
-let counter = 1;
-//656a1954322ca87e4bf35b9e
-
 UserService.users.list().then(({ data }) => {
 	dataItems.innerHTML = '';
 
-	data.forEach((user, idx) => {
+	data.forEach((user) => {
 		newData += renderHTML(user);
 		dataItems.innerHTML = newData;
 	});
 
 	let dataItem = document.querySelectorAll('.users-data-items-item');
 
-	gsap.to(dataItem, {opacity: 1, stagger: 0.1, left: 0, duration: 0.25});
+	// eslint-disable-next-line no-undef
+	gsap.to('.users-data-items-item', {opacity: 1, stagger: 0.1, left: 0, duration: 0.25});
 
 	dataItem.forEach((item) => {
 		item.addEventListener('click', () => {
