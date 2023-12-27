@@ -67,7 +67,6 @@ const refactorCard = (user) => {
 		});
 
 		UserService.users.update(user._id, newUserData).then(( {data} ) => {
-			console.log(data);
 		});
 
 
