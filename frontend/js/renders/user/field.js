@@ -6,21 +6,18 @@ const userInfo = [
 		label: 'Возраст',
 		key: 'age',
 		disabled: true,
-		className: 'popup-card-details-item',
 	},
 	{
 		id: 'address',
 		label: 'Адрес',
 		key: 'address',
 		disabled: false,
-		className: 'popup-card-details-item',
 	},
 	{
 		id: 'post',
 		label: 'Должность',
 		key: 'post',
 		disabled: false,
-		className: 'popup-card-details-item',
 	},
 	{
 		id: 'name',
@@ -28,7 +25,6 @@ const userInfo = [
 		key: 'name',
 		disabled: false,
 		edit: false,
-		className: 'popup-card-details-item',
 	},
 ]
 
@@ -50,7 +46,7 @@ const renderUserFields = (user, mode = '') => {
 
 	return filteredFields.reduce((acc, field) => {
 		acc += `<label for="${field.id}">${field.label}:</label>
-            <input ${setBlockedField(field.disabled)} id="${field.id}" class="${field.className}" value="${user[field.key]}" >
+            <input ${setBlockedField(field.disabled)} id="${field.id}" class="popup-card-details-item" value="${user[field.key] ?? ''}" >
 		`
 
 		return acc
