@@ -77,11 +77,8 @@ const dragndrop = () => {
 
 			dragBlock.style.cursor = 'grab';
 		};
-
 	};
-
 	card.ondragstart = () => false;
-
 };
 
 UserService.users.list().then(({ data }) => {
@@ -230,9 +227,4 @@ closeInputBtn.addEventListener('click', () => {
 	inputBlock.classList.remove('active')
 	gsap.to(inputBlock, {opacity: 0, left: -50, duration: 0.25})
 	input.value = ''
-})
-
-// UserService.users.remove("6581987ceaf0a802db4a7939")
-
-
-
+})}
