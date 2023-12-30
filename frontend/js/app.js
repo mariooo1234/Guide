@@ -1,167 +1,17 @@
+/** @class UserService - Сервис для работы с пользователями */
 import UserService from './services/UserService.js'
-import { renderHTML, renderCardHTML, renderRefactorCardHTML, renderNewCardHTML } from './renders/user/render.js'
-import userService from './services/UserService.js'
 
-const checkbox = document.getElementById('checkbox')
-const number = document.getElementById('number')
-const wrapper = document.getElementById('wrapper')
+/** @module UserRender - Пользовательский редеринг */
+import { renderUser, renderCardHTML } from './renders/user/render.js'
+import {drag} from './drag.js'
 
-const inputBlock = document.querySelector('.users-addItem-inputBlock')
-const input = document.querySelector('.users-addItem-inputBlock__input')
-const addButton = document.querySelector('.preview__title-btn')
-const closeInputBtn = document.querySelector('.users-addItem-inputBlock__trash')
-const dataItems = document.querySelector('.users-data-items')
-let newData = ''
-// let newData = ''
-let newCard = ''
+
+const userGuide = document.querySelector('.users-data-items')
 
 const popup = document.querySelector('.popup')
 const card = document.querySelector('.popup-card')
 
 const loader = document.querySelector('.loader')
-const limits = {
-	top: 0,
-	right: document.documentElement.clientWidth,
-	bottom: document.documentElement.clientHeight,
-	left: 0,
-}
-
-
-gsap.registerPlugin(Flip)
-
-const dragndrop = () => {
-	const dragBlock = document.querySelector('.popup-card-dragndrop')
-
-	dragBlock.onmousedown = (event) => {
-		let shiftX = event.clientX - card.getBoundingClientRect().left
-		let shiftY = event.clientY - card.getBoundingClientRect().top
-
-		const moveAt = (pageX, pageY) => {
-			// console.log(limits.right,'/////', pageX - shiftX, '////', Math.min(limits.right,  pageX - shiftX));
-			// card.style.left = pageX - shiftX + 'px';
-			// card.style.top = pageY - shiftY + 'px';
-
-			card.style.left=Math.max(Math.min(event.pageX - pageX - shiftX, limits.right - card.clientWidth,),0)+'px'
-			card.style.top=Math.max(Math.min(event.pageY - pageY - shiftY, limits.bottom - card.clientHeight),0)+'px'
-		}
-
-		// moveAt(event.pageX, event.pageY);
-
-		const onMouseMove = (event) => {
-
-			// if (parseInt(card.style.left) + card.clientWidth > limits.right) {
-			// 	moveAt(limits.right, event.pageY);
-			// } else if (parseInt(card.style.right) < limits.left) {
-			// 	moveAt(limits.left, event.pageY);
-			// }
-			// if (event.pageY >= limits.bottom) {
-			// 	moveAt(limits.bottom, event.pageY);
-			// } else if (event.pageY >= limits.top) {
-			// 	moveAt(limits.top, event.pageY);
-			// }
-			// console.log(parseInt(card.style.left) + card.clientWidth);
-			//
-			// if (parseInt(card.style.left) + card.clientWidth > limits.right) {
-			// 	moveAt(event.pageX, event.pageY);
-			// 	console.log('test');
-			// }
-
-			moveAt(event.pageX, event.pageY)
-			dragBlock.style.cursor = 'grabbing'
-		}
-
-		document.addEventListener('mousemove', onMouseMove)
-
-		card.onmouseup = function (){
-			document.removeEventListener('mousemove', onMouseMove)
-
-			dragBlock.style.cursor = 'grab'
-		}
-	}
-	card.ondragstart = () => false
-}
-
-
-UserService.users.list({name: 'inv'}).then(({ data }) => {
-	dataItems.innerHTML = ''
-
-	data.forEach((user) => {
-		newData += renderHTML(user)
-		dataItems.innerHTML = newData
-	})
-
-	let dataItem = document.querySelectorAll('.users-data-items-item')
-
-	// eslint-disable-next-line no-undef
-	gsap.to('.users-data-items-item', {opacity: 1, stagger: 0.1, left: 0, duration: 0.25})
-
-	dataItem.forEach((item) => {
-		item.addEventListener('click', () => {
-			popup.classList.add('open')
-			data.forEach(user => {
-				if (user._id === item.id) {
-					newCard = renderCardHTML(user)
-					card.innerHTML = newCard
-
-					let widthWindow = document.documentElement.clientWidth
-					let heightWindow = document.documentElement.clientHeight
-
-					let widthCard = card.clientWidth
-					let heightCard = card.clientHeight
-
-					card.style.left = ((widthWindow - widthCard) / 2) + 'px'
-					card.style.top = ((heightWindow - heightCard) / 2) + 'px'
-
-					toOpenRefactorCard(user)
-
-					toDeleteUser()
-
-					dragndrop()
-				}
-			})
-		})
-	})
-})
-
-/** @callback - Обработчик кнопки сохранения изменений в данных пользователя */
-const refactorCard = (user) => {
-	const inputsData = document.querySelectorAll('.popup-card-details-item')
-	const saveBtn = document.querySelector('.popup-card-btns__save')
-	let newUserData = {}
-
-	saveBtn.addEventListener('click',() => {
-		inputsData.forEach((input) => {
-			let inputValue = ''
-			input.value.length > 0 ? inputValue = input.value.replace(input.value[0], input.value[0].toUpperCase()) : inputValue = input.placeholder
-			newUserData[input.id] = inputValue || input.placeholder
-		})
-
-		UserService.users.update(user._id, newUserData).then(( {data} ) => {
-		})
-	})
-}
-
-/** @callback - Обработчик кнопки открытия карточки редактирования данных пользователя */
-const toOpenRefactorCard = (user) => {
-	const refactorBtn = document.querySelector('.popup-card-btns__refactor')
-	refactorBtn.addEventListener('click', () => {
-		newCard = renderRefactorCardHTML(user)
-		card.innerHTML = newCard
-
-		refactorCard(user)
-	})
-}
-
-const toDeleteUser = () => {
-	const deleteBtn = document.querySelector('.popup-card-btns__delete')
-	let idUser = deleteBtn.id
-	deleteBtn.addEventListener('click', () => {
-		if (confirm('Вы уверены что хотите удалить этого пользователя?')) userService.users.remove(idUser)
-
-		location.reload()
-	})
-}
-
 
 /** @callback - Обработчик  закрытия popup-окна */
 popup.addEventListener('click', ({ target }) => {
@@ -171,59 +21,22 @@ popup.addEventListener('click', ({ target }) => {
 	}
 })
 
+const { data } = await UserService.users.list({name: ''})
 
+loader.style.display = 'none'
 
+data.forEach((user) => userGuide.innerHTML += renderUser(user))
 
-checkbox.addEventListener('change', ({target}) => {
-	const state = Flip.getState('.users-data-items-item')
-	let str = ''
-	for (let i = 1; i <= counter; i++) {
-		str += '1fr '
-	}
+gsap.to('.users-data-items-item', {opacity: 1, stagger: 0.05, left: 0, duration: 0.25})
 
-	wrapper.style.gridTemplateColumns = str
+document.querySelectorAll('.users-data-items-item').forEach((item) => {
+	item.addEventListener('click', async () => {
+		const { data } = await UserService.users.get(item.id)
 
-	Flip.from(state, {
-		absolute: true,
-		stagger: 0.07,
-		duration: 1,
-		ease: 'power2.inOut',
-		simple: true,
-		onEnter: (elements, animation) => {
+		popup.classList.add('open')
 
-		},
-		onLeave: elements => gsap.to(elements, {opacity: 0})
+		card.innerHTML = renderCardHTML(data)
+
+		drag(card)
 	})
-})
-
-
-
-/** @callback - Обработчик кнопки добавления нового элемента */
-addButton.addEventListener('click', () => {
-	popup.classList.add('open')
-
-	newCard = renderNewCardHTML()
-	card.innerHTML = newCard
-
-	const newUserData = {}
-	const inputsData = document.querySelectorAll('.popup-card-details-item')
-	const saveNewUserBtn = document.querySelector('.popup-card-btns__save')
-
-	saveNewUserBtn.addEventListener('click',() => {
-		inputsData.forEach((input) => {
-			newUserData[input.id] = input.value
-		})
-
-		UserService.users.create(newUserData)
-
-		location.reload()
-	})
-
-	// gsap.to(card, {opacity: 1, left: 0, duration: 0.25});
-})
-
-closeInputBtn.addEventListener('click', () => {
-	inputBlock.classList.remove('active')
-	gsap.to(inputBlock, {opacity: 0, left: -50, duration: 0.25})
-	input.value = ''
 })
