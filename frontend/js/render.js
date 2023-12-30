@@ -24,7 +24,8 @@ const renderCardHTML = (user) => {
 		return value.includes(firstCharacter.toLowerCase());
 	});
 
-	return `<div class="popup-card__photo" style="background-color: ${colorKey || '#E6E6FA'}">${firstCharacter}</div>
+	return `<div class="popup-card-dragndrop"></div>
+		<div class="popup-card__photo" style="background-color: ${colorKey || '#E6E6FA'}; user-select: none;">${firstCharacter}</div>
         <p class="popup-card__FIO">${user.surname + ' ' + user.name}<br> ${user.patronymic}</p>
         <div class="popup-card-details">
             <label for="age">Возраст:</label>

@@ -14,13 +14,75 @@ const dataItems = document.querySelector('.users-data-items');
 let newData = '';
 let newCard = '';
 
+
 const popup = document.querySelector('.popup');
 const card = document.querySelector('.popup-card');
 
-const loader = document.querySelector('.loader');
+const limits = {
+	top: 0,
+	right: document.documentElement.clientWidth,
+	bottom: document.documentElement.clientHeight,
+	left: 0,
+};
 
+let counter;
 
 gsap.registerPlugin(Flip);
+
+const dragndrop = () => {
+	const dragBlock = document.querySelector('.popup-card-dragndrop');
+
+	dragBlock.onmousedown = (event) => {
+		let shiftX = event.clientX - card.getBoundingClientRect().left;
+		let shiftY = event.clientY - card.getBoundingClientRect().top;
+
+		const moveAt = (pageX, pageY) => {
+			// console.log(limits.right,'/////', pageX - shiftX, '////', Math.min(limits.right,  pageX - shiftX));
+			// card.style.left = pageX - shiftX + 'px';
+			// card.style.top = pageY - shiftY + 'px';
+
+			card.style.left=Math.max(Math.min(event.pageX - pageX - shiftX, limits.right - card.clientWidth,),0)+'px';
+			card.style.top=Math.max(Math.min(event.pageY - pageY - shiftY, limits.bottom - card.clientHeight),0)+'px';
+		};
+
+		// moveAt(event.pageX, event.pageY);
+
+		const onMouseMove = (event) => {
+
+			// if (parseInt(card.style.left) + card.clientWidth > limits.right) {
+			// 	moveAt(limits.right, event.pageY);
+			// } else if (parseInt(card.style.right) < limits.left) {
+			// 	moveAt(limits.left, event.pageY);
+			// }
+			// if (event.pageY >= limits.bottom) {
+			// 	moveAt(limits.bottom, event.pageY);
+			// } else if (event.pageY >= limits.top) {
+			// 	moveAt(limits.top, event.pageY);
+			// }
+			// console.log(parseInt(card.style.left) + card.clientWidth);
+			//
+			// if (parseInt(card.style.left) + card.clientWidth > limits.right) {
+			// 	moveAt(event.pageX, event.pageY);
+			// 	console.log('test');
+			// }
+
+			moveAt(event.pageX, event.pageY);
+			dragBlock.style.cursor = 'grabbing';
+		};
+
+		document.addEventListener('mousemove', onMouseMove);
+
+		card.onmouseup = function (){
+			document.removeEventListener('mousemove', onMouseMove);
+
+			dragBlock.style.cursor = 'grab';
+		};
+
+	};
+
+	card.ondragstart = () => false;
+
+};
 
 UserService.users.list().then(({ data }) => {
 	dataItems.innerHTML = '';
@@ -43,12 +105,22 @@ UserService.users.list().then(({ data }) => {
 					newCard = renderCardHTML(user);
 					card.innerHTML = newCard;
 
+					let widthWindow = document.documentElement.clientWidth;
+					let heightWindow = document.documentElement.clientHeight;
+
+					let widthCard = card.clientWidth;
+					let heightCard = card.clientHeight;
+
+					card.style.left = ((widthWindow - widthCard) / 2) + 'px';
+					card.style.top = ((heightWindow - heightCard) / 2) + 'px' ;
+
 					toOpenRefactorCard(user);
 
 					toDeleteUser();
+
+					dragndrop();
 				}
 			});
-
 		});
 	});
 });
@@ -61,6 +133,8 @@ const refactorCard = (user) => {
 	
 	saveBtn.addEventListener('click',() => {
 		inputsData.forEach((input) => {
+			console.log('tset');
+
 			let inputValue = '';
 			input.value.length > 0 ? inputValue = input.value.replace(input.value[0], input.value[0].toUpperCase()) : inputValue = input.placeholder;
 			newUserData[input.id] = inputValue || input.placeholder;
@@ -68,8 +142,6 @@ const refactorCard = (user) => {
 
 		UserService.users.update(user._id, newUserData).then(( {data} ) => {
 		});
-
-
 	});
 };
 
@@ -94,14 +166,18 @@ const toDeleteUser = () => {
 	});
 };
 
-
 /** @callback - Обработчик  закрытия popup-окна */
 popup.addEventListener('click', ({ target }) => {
 	if (!target.closest('.popup-card') && !target.closest('.popup-card-btns') || target.closest('.popup-card-btns__cansel')) {
+
 		popup.classList.remove('open');
 		card.innerHTML = '';
+		// card.style.top = '-200%';
+		// card.style.left = '50%';
 	}
 });
+
+
 
 
 number.addEventListener('change', ({ target: { value } }) => {
@@ -163,6 +239,7 @@ closeInputBtn.addEventListener('click', () => {
 });
 
 // UserService.users.remove("6581987ceaf0a802db4a7939")
+
 
 
 
