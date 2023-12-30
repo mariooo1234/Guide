@@ -24,26 +24,26 @@ const limits = {
 	right: document.documentElement.clientWidth,
 	bottom: document.documentElement.clientHeight,
 	left: 0,
-};
+}
 
 
-gsap.registerPlugin(Flip);
+gsap.registerPlugin(Flip)
 
 const dragndrop = () => {
-	const dragBlock = document.querySelector('.popup-card-dragndrop');
+	const dragBlock = document.querySelector('.popup-card-dragndrop')
 
 	dragBlock.onmousedown = (event) => {
-		let shiftX = event.clientX - card.getBoundingClientRect().left;
-		let shiftY = event.clientY - card.getBoundingClientRect().top;
+		let shiftX = event.clientX - card.getBoundingClientRect().left
+		let shiftY = event.clientY - card.getBoundingClientRect().top
 
 		const moveAt = (pageX, pageY) => {
 			// console.log(limits.right,'/////', pageX - shiftX, '////', Math.min(limits.right,  pageX - shiftX));
 			// card.style.left = pageX - shiftX + 'px';
 			// card.style.top = pageY - shiftY + 'px';
 
-			card.style.left=Math.max(Math.min(event.pageX - pageX - shiftX, limits.right - card.clientWidth,),0)+'px';
-			card.style.top=Math.max(Math.min(event.pageY - pageY - shiftY, limits.bottom - card.clientHeight),0)+'px';
-		};
+			card.style.left=Math.max(Math.min(event.pageX - pageX - shiftX, limits.right - card.clientWidth,),0)+'px'
+			card.style.top=Math.max(Math.min(event.pageY - pageY - shiftY, limits.bottom - card.clientHeight),0)+'px'
+		}
 
 		// moveAt(event.pageX, event.pageY);
 
@@ -66,23 +66,22 @@ const dragndrop = () => {
 			// 	console.log('test');
 			// }
 
-			moveAt(event.pageX, event.pageY);
-			dragBlock.style.cursor = 'grabbing';
-		};
+			moveAt(event.pageX, event.pageY)
+			dragBlock.style.cursor = 'grabbing'
+		}
 
-		document.addEventListener('mousemove', onMouseMove);
+		document.addEventListener('mousemove', onMouseMove)
 
 		card.onmouseup = function (){
-			document.removeEventListener('mousemove', onMouseMove);
+			document.removeEventListener('mousemove', onMouseMove)
 
-			dragBlock.style.cursor = 'grab';
-		};
-	};
-	card.ondragstart = () => false;
-};
+			dragBlock.style.cursor = 'grab'
+		}
+	}
+	card.ondragstart = () => false
+}
 
-UserService.users.list().then(({ data }) => {
-	dataItems.innerHTML = '';
+
 UserService.users.list({name: 'inv'}).then(({ data }) => {
 	dataItems.innerHTML = ''
 
@@ -104,32 +103,32 @@ UserService.users.list({name: 'inv'}).then(({ data }) => {
 					newCard = renderCardHTML(user)
 					card.innerHTML = newCard
 
-					let widthWindow = document.documentElement.clientWidth;
-					let heightWindow = document.documentElement.clientHeight;
+					let widthWindow = document.documentElement.clientWidth
+					let heightWindow = document.documentElement.clientHeight
 
-					let widthCard = card.clientWidth;
-					let heightCard = card.clientHeight;
+					let widthCard = card.clientWidth
+					let heightCard = card.clientHeight
 
-					card.style.left = ((widthWindow - widthCard) / 2) + 'px';
-					card.style.top = ((heightWindow - heightCard) / 2) + 'px' ;
+					card.style.left = ((widthWindow - widthCard) / 2) + 'px'
+					card.style.top = ((heightWindow - heightCard) / 2) + 'px'
 
-					toOpenRefactorCard(user);
+					toOpenRefactorCard(user)
 
-					toDeleteUser();
+					toDeleteUser()
 
-					dragndrop();
+					dragndrop()
 				}
-			});
-		});
-	});
-});
+			})
+		})
+	})
+})
 
 /** @callback - Обработчик кнопки сохранения изменений в данных пользователя */
 const refactorCard = (user) => {
 	const inputsData = document.querySelectorAll('.popup-card-details-item')
 	const saveBtn = document.querySelector('.popup-card-btns__save')
 	let newUserData = {}
-	
+
 	saveBtn.addEventListener('click',() => {
 		inputsData.forEach((input) => {
 			let inputValue = ''
@@ -138,9 +137,9 @@ const refactorCard = (user) => {
 		})
 
 		UserService.users.update(user._id, newUserData).then(( {data} ) => {
-		});
-	});
-};
+		})
+	})
+}
 
 /** @callback - Обработчик кнопки открытия карточки редактирования данных пользователя */
 const toOpenRefactorCard = (user) => {
@@ -227,4 +226,4 @@ closeInputBtn.addEventListener('click', () => {
 	inputBlock.classList.remove('active')
 	gsap.to(inputBlock, {opacity: 0, left: -50, duration: 0.25})
 	input.value = ''
-})}
+})
