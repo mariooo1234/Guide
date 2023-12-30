@@ -25,7 +25,7 @@ const paintElement = (firstCharacter) => {
 }
 
 const renderHTML = (user) => {
-	return `<div class="users-data-items-item" id="${user._id}">${user.surname + ' ' + user.name + ' ' + user.patronymic}</div>`
+	return `<div class="users-data-items-item" id="${user._id}">${buildUserName(user)}</div>`
 }
 
 const renderCardHTML = (user) => {
@@ -33,9 +33,9 @@ const renderCardHTML = (user) => {
 
 	const foundColor = paintElement(firstCharacter)
 
-	return `<div class="popup-card__photo" style="background-color: ${foundColor || '#E6E6FA'}">${firstCharacter}</div>
+	return `<div class="popup-card__photo" style="background-color: ${foundColor}">${firstCharacter}</div>
         <p class="popup-card__FIO">${buildUserName(user)}</p>
-        <div class="popup-card-details">${renderUserFields(userInfo, user)}</div>
+        <div class="popup-card-details">${renderUserFields(user, 'edit')}</div>
         <div class="popup-card-btns">
             <button id="${user._id}" class="popup-card-btns__refactor">Редактировать</button>
             <button id="${user._id}" class="popup-card-btns__delete">Удалить</button>

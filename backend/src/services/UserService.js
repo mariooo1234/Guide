@@ -1,5 +1,5 @@
 /** @module Model - Модель пользователя */
-import UserModel from '../models/User.js';
+import UserModel from '../models/User.js'
 
 /** @class UserService - Сервис по работе с юзерами */
 class UserService {
@@ -8,27 +8,27 @@ class UserService {
 	 * @name create - Создание пользователя
 	 * @param article - Объект пользователя */
 	create(article) {
-		return UserModel.create(article);
+		return UserModel.create(article)
 	}
 
 	/** @method
 	 * @name get - Получение пользователя
 	 * @param id - Идентификатор пользователя */
 	get(id) {
-		return UserModel.findById(id);
+		return UserModel.findById(id)
 	}
 
 	/** @method
 	 * @name list - Получение cписка всех пользователей */
-	list(query) {
-		return UserModel.find();
+	list() {
+		return UserModel.find()
 	}
 
 	/** @method
 	 * @name remove - Удаление пользователя
 	 * @param id - Идентификатор пользователя */
 	remove(id) {
-		return UserModel.findByIdAndDelete(id);
+		return UserModel.findByIdAndDelete(id)
 	}
 
 	/** @method
@@ -36,10 +36,10 @@ class UserService {
 	 * @param id - Идентификатор пользователя
 	 * @param payload - Обновляемые параметры */
 	async update(id, payload) {
-		await UserModel.findOneAndUpdate({ _id: id }, payload);
+		await UserModel.findOneAndUpdate({ _id: id }, payload)
 
-		return UserModel.findById(id);
+		return UserModel.findById(id)
 	}
 }
 
-export default new UserService();
+export default new UserService()

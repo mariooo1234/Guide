@@ -23,7 +23,7 @@ const loader = document.querySelector('.loader')
 
 gsap.registerPlugin(Flip)
 
-UserService.users.list().then(({ data }) => {
+UserService.users.list({name: 'inv'}).then(({ data }) => {
 	dataItems.innerHTML = ''
 
 	data.forEach((user) => {
