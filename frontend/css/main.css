@@ -288,14 +288,24 @@ main {
   justify-content: space-around;
 }
 
-.users-tools__input-number-block-par-inc,
-.users-tools__input-number-block-par-dec {
-  background-color: #DDDDDD;
+.users-tools__input-number-arrow {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 15px;
   height: 15px;
+  border: 1px solid;
   cursor: pointer;
+  user-select: none;
+  transition: all 0.5s ease;
+}
+
+.users-tools__input-number-arrow:hover:nth-child(1) {
+  background-color: green;
+}
+
+.users-tools__input-number-arrow:hover:nth-last-child(1) {
+  background-color: red;
 }
 
 .users-tools-sort {
@@ -749,7 +759,7 @@ main {
   margin-bottom: 20px;
 }
 
-/*# sourceMappingURL=main.css.map */
+
 .loader {
   width: 40px;
   height: 40px;

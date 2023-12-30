@@ -12,6 +12,7 @@ const addButton = document.querySelector('.preview__title-btn')
 const closeInputBtn = document.querySelector('.users-addItem-inputBlock__trash')
 const dataItems = document.querySelector('.users-data-items')
 let newData = ''
+// let newData = ''
 let newCard = ''
 
 const popup = document.querySelector('.popup')
@@ -104,9 +105,9 @@ popup.addEventListener('click', ({ target }) => {
 })
 
 
-number.addEventListener('change', ({ target: { value } }) => {
-	counter = value
-})
+// number.addEventListener('change', ({ target: { value } }) => {
+// 	counter = value
+// })
 
 checkbox.addEventListener('change', ({target}) => {
 	const state = Flip.getState('.users-data-items-item')
