@@ -54,18 +54,35 @@
                                 <span><i></i></span>
                             </label>
 
+<!--                            <div class="users-tools__input-number-block">-->
+<!--                                <button class="users-tools__input-number__btn-dec" id="decrement" onclick="stepper(this)"> - </button>-->
+<!--                                <input class="users-tools__input-number" id="my-input" type="number" min="1" max="4" value="1" readonly>-->
+<!--                                <button class="users-tools__input-number__btn-inc" id="increment" onclick="stepper(this)"> + </button>-->
+<!--                            </div>-->
+
                             <div class="users-tools__input-number-block">
-                                <button id="decrement"> - </button>
-                                <input class="users-tools__input-number" id="number" type="number" name="number" min="1" max="4" value="1" readonly>
-                                <button id="increment"> + </button>
+                                <input class="users-tools__input-number" id="input-number" type="number" min="1" max="4" value="1" readonly>
+                                <div class="users-tools__input-number-block-par">
+                                    <div class="users-tools__input-number-arrow" data-sign="+" >
+                                        +
+                                    </div>
+                                    <div class="users-tools__input-number-arrow" data-sign="-" >
+                                        -
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                         <div class="users-tools-sort">
                             <span class="users-tools-sort__title">Сортировка:</span>
                             <div class="users-tools-sort-dropdown">
                                 <div class="users-tools-sort-dropdown__select">
                                     <span class="users-tools-sort-dropdown__select-selected">По популярности</span>
-                                    <div class="users-tools-sort-dropdown__select-caret"></div>
+                                    <div class="users-tools-sort-dropdown__select-caret">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
                                 </div>
                                 <ul class="users-tools-sort-dropdown__menu">
                                     <li>По возрастанию цены</li>
@@ -123,8 +140,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Flip.min.js"></script>
+    <script src="js/controls/inputNumber.js"></script>
     <script type="module" src="js/app.js"></script>
-    <script src="js/dropdown.js"></script>
+    <script src="js/controls/dropdown.js"></script>
 
 </main>
 <footer>

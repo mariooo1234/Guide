@@ -183,7 +183,7 @@ main {
 .users-tools__input {
   display: flex;
   justify-content: space-between;
-  gap: 70px;
+  gap: 60px;
 }
 
 .users-tools__input-search {
@@ -279,16 +279,41 @@ main {
 }
 
 .users-tools__input-number-block {
-  position: absolute;
-  transform: translate(-50% -50%);
-  top: 50%;
-  left: 50%;
   display: flex;
-  background-color: yellow;
+  flex-direction: row;
+  position: relative;
+  width: 80px;
 }
 
 .users-tools__input-number {
-  appearance: textfield;
+
+}
+
+.users-tools__input-number-block-par {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.users-tools__input-number-arrow {
+  //background-color: #DDDDDD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  border: 1px solid ;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.5s ease;
+}
+
+.users-tools__input-number-arrow:hover:nth-child(1) {
+  background-color: green;
+}
+
+.users-tools__input-number-arrow:hover:nth-last-child(1) {
+  background-color: red;
 }
 
 .users-tools-sort {
@@ -402,6 +427,7 @@ main {
   color: #9fa5b5;
   display: flex;
   justify-content: space-between;
+  gap: 15px;
   align-items: center;
   border: 2px solid #DDD;
   border-radius: 0.5em;
@@ -415,18 +441,87 @@ main {
   border-color: rgba(0, 0, 0, 0.34);
 }
 
+//.users-tools-sort-dropdown__select-caret {
+//  width: 0;
+//  height: 0;
+//  border-left: 6px solid #2B2A29;
+//  border-bottom: 5px solid transparent;
+//  border-top: 5px solid transparent;
+//  transition: 0.3s;
+//}
+//
+//.users-tools-sort-dropdown__select-caret-rotate {
+//  transform: rotate(90deg);
+//}
+
 .users-tools-sort-dropdown__select-caret {
-  width: 0;
-  height: 0;
-  border-left: 6px solid #2B2A29;
-  border-bottom: 5px solid transparent;
-  border-top: 5px solid transparent;
-  transition: 0.3s;
+  overflow: hidden;
+  position: relative;
+  width: 30px;
+  height: 22px;
 }
 
-.users-tools-sort-dropdown__select-caret-rotate {
-  transform: rotate(90deg);
+.users-tools-sort-dropdown__select-caret span {
+  display: block;
+  height: 2px;
+  background: #9fa5b5;
+  transition: 0.4s ease;
 }
+
+.users-tools-sort-dropdown__select-caret span:first-child,
+.users-tools-sort-dropdown__select-caret span:last-child {
+  display: block;
+  height: 2px;
+  left: 50%;
+  width: 10px;
+  background: #9fa5b5;
+  transition: 0.4s ease;
+}
+
+.users-tools-sort-dropdown__select-caret span:first-child {
+  position: absolute;
+  transform: rotate(135deg);
+  border-bottom-right-radius: 0;
+  bottom: 7px;
+}
+
+.users-tools-sort-dropdown__select-caret span:nth-child(even) {
+  position: absolute;
+  width: 22px;
+  top: 10px;
+  //border-top-right-radius: 35%;
+  //border-bottom-right-radius: 35%;
+  left: 0;
+}
+
+.users-tools-sort-dropdown__select-caret span:last-child {
+  position: absolute;
+  transform: rotate(45deg);
+  border-top-right-radius: 0;
+  top: 7px;
+}
+
+.users-tools-sort-dropdown__select-caret-rotate span:nth-child(odd) {
+  width: 20px;
+  border-radius: 0;
+  left: 10%;
+}
+
+.users-tools-sort-dropdown__select-caret-rotate span:first-child {
+  rotate: (180deg);
+  bottom: 10px;
+}
+
+.users-tools-sort-dropdown__select-caret-rotate span:last-child {
+  rotate: (-180deg);
+  top: 10px;
+}
+
+.users-tools-sort-dropdown__select-caret-rotate span:nth-child(even) {
+  opacity: 0;
+  left: 100%;
+}
+
 
 .users-tools-sort-dropdown__menu {
   list-style: none;
@@ -576,33 +671,30 @@ main {
   top: 0;
   transition: all 0.4s ease-in-out;
   z-index: 15;
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
 }
 .popup.open {
   visibility: visible;
   opacity: 1;
 }
 .popup.open .popup-card {
-  //top: 50%;
-  //transform: translate(-50%, -50%);
-  ////transition: all 0.5s ease-out;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .popup-card {
   width: 500px;
   height: auto;
   background-color: #fff;
-  //top: -50px;
-  //left: 50%;
   position: absolute;
   border-radius: 10px;
   box-shadow: 0 25px 100px #999999;
   padding: 30px;
   display: flex;
+  top: 50%;
+  left: 50%;
   flex-direction: column;
   align-items: center;
-  transition: none;
+  transform: translateY(-40px) scale(1.5);
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .popup-card-dragndrop {
@@ -633,6 +725,7 @@ main {
 .popup-card__FIO {
   font-size: 20px;
   text-align: center;
+  text-transform: capitalize;
 }
 .popup-card-details {
   width: 100%;
