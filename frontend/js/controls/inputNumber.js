@@ -6,9 +6,8 @@ arrows.forEach((arrow) => {
 		const {min, max} = countColumns
 		
 		const value = eval(`${countColumns.value} ${sign} 1`)
-		console.log(!(value > max), !(value < min))
-		if ( !(value > max) && !(value < min)) countColumns.value = value
 
+		if (!(value > max) && !(value < min)) countColumns.value = value
 	})
 })
 //
