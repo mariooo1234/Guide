@@ -1,65 +1,107 @@
 const card = document.querySelector('.popup-card')
 
-const limits = {
-	top: 0,
-	right: document.documentElement.clientWidth,
-	bottom: document.documentElement.clientHeight,
-	left: 0,
+/** @const
+ * @name coords - Координаты */
+const coords = {
+	mouseX: 0,
+	mouseY: 0,
+	offsetX: 0,
+	offsetY: 0,
+	elementX: 0,
+	elementY: 0,
 }
 
+/** @const
+ * @name states - Состояния */
+const states = {
+	moving: false,
+}
+/** @function
+ * @name dragndrop - Реализация работы drag and drop */
 const dragndrop = () => {
 	const dragBlock = document.querySelector('.popup-card-dragndrop')
+	const popup = document.querySelector('.popup')
 
-	dragBlock.onmousedown = (event) => {
-		let shiftX = (event.clientX - card.getBoundingClientRect().left)
-		let shiftY = event.clientY - card.getBoundingClientRect().top
 
-		const moveAt = (pageX, pageY) => {
-			// console.log(limits.right,'/////', pageX - shiftX, '////', Math.min(limits.right,  pageX - shiftX));
-			// card.style.left = pageX - shiftX + 'px';
-			// card.style.top = pageY - shiftY + 'px';
-			console.log(shiftX, shiftY)
+	let widthWindow = document.documentElement.clientWidth
+	let heightWindow = document.documentElement.clientHeight
 
-			card.style.left = Math.min()
+	let widthCard = card.clientWidth
+	let heightCard = card.clientHeight
 
-			card.style.left = Math.max(Math.min(event.pageX + pageX - shiftY, limits.right - card.clientWidth,),0) + 'px'
-			card.style.top = Math.max(Math.min(event.pageY + pageY - shiftX, limits.bottom - card.clientHeight),0) + 'px'
-		}
+	card.style.left = ((widthWindow - widthCard) / 2) + 'px'
+	card.style.top = ((heightWindow - heightCard) / 2) + 'px'
 
-		// moveAt(event.pageX, event.pageY);
 
-		const onMouseMove = (event) => {
 
-			// if (parseInt(card.style.left) + card.clientWidth > limits.right) {
-			// 	moveAt(limits.right, event.pageY);
-			// } else if (parseInt(card.style.right) < limits.left) {
-			// 	moveAt(limits.left, event.pageY);
-			// }
-			// if (event.pageY >= limits.bottom) {
-			// 	moveAt(limits.bottom, event.pageY);
-			// } else if (event.pageY >= limits.top) {
-			// 	moveAt(limits.top, event.pageY);
-			// }
-			// console.log(parseInt(card.style.left) + card.clientWidth);
-			//
-			// if (parseInt(card.style.left) + card.clientWidth > limits.right) {
-			// 	moveAt(event.pageX, event.pageY);
-			// 	console.log('test');
-			// }
+	/** @function
+		 * @name mouseCapture - Захват мышкой цели
+		 * @param event {Event} - Объект события
+		 * @param move {boolean} - Разрешать ли перемещение объекта */
+	const mouseCapture = ({ clientX, clientY }, move = false) => {
 
-			moveAt(event.pageX, event.pageY)
-			dragBlock.style.cursor = 'grabbing'
-		}
+		states.moving = move
 
-		document.addEventListener('mousemove', onMouseMove)
+		document.removeEventListener('mousemove',moving)
 
-		card.onmouseup = function (){
-			document.removeEventListener('mousemove', onMouseMove)
+		coords.mouseX = clientX
+		coords.mouseY = clientY
 
-			dragBlock.style.cursor = 'grab'
-		}
+		const { left, top } = card.getBoundingClientRect()
+
+		coords.offsetX = coords.mouseX - left
+		coords.offsetY = coords.mouseY - top
 	}
-	card.ondragstart = () => false
+
+
+	/** @function
+	 * @name moving - Перемещение захваченного элемента
+	 * @param event {Event} - Объект события */
+	const moving = ({ clientX, clientY }) => {
+		const newPositionX = clientX - coords.offsetX
+		const newPositionY = clientY - coords.offsetY
+
+		let windowWidth = document.documentElement.clientWidth
+		let windowHeight = document.documentElement.clientHeight
+
+		let cardWidth = card.clientWidth
+		let cardHeight = card.clientHeight
+
+		coords.elementX =
+			newPositionX <= 0
+				? 0
+				: windowWidth - cardWidth <= newPositionX
+					? windowWidth - cardWidth
+					: newPositionX
+
+		coords.elementY =
+				newPositionY <= 0
+					? 0
+					: windowHeight - cardHeight <= newPositionY
+						? windowHeight - cardHeight
+						: newPositionY
+
+		card.style.left = coords.elementX + 'px'
+		card.style.top = coords.elementY + 'px'
+	}
+
+
+	/** @function
+	 * @name mouseCapture - Перетаскивание мышкой цели
+	 * @param event {Event} - Объект события */
+	const moveTarget = ({ clientX, clientY }) => {
+		if (states.moving) {
+			document.addEventListener('mousemove',moving)
+		}
+
+	}
+
+	dragBlock.addEventListener('mousedown', (event) => {
+		mouseCapture(event, true)
+	})
+
+	popup.addEventListener('mousemove', moveTarget)
+	popup.addEventListener('mouseup', mouseCapture)
 }
 
 export { dragndrop }

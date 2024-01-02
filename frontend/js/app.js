@@ -1,9 +1,10 @@
 /** @class UserService - Сервис для работы с пользователями */
 import UserService from './services/UserService.js'
 
+import { dragndrop } from './modal/modal.js'
+
 /** @module UserRender - Пользовательский редеринг */
 import { renderUser, renderCardHTML } from './renders/user/render.js'
-import {drag} from './drag.js'
 
 
 const userGuide = document.querySelector('.users-data-items')
@@ -17,7 +18,6 @@ const loader = document.querySelector('.loader')
 popup.addEventListener('click', ({ target }) => {
 	if (!target.closest('.popup-card') && !target.closest('.popup-card-btns') || target.closest('.popup-card-btns__cansel')) {
 		popup.classList.remove('open')
-		card.innerHTML = ''
 	}
 })
 
@@ -37,6 +37,6 @@ document.querySelectorAll('.users-data-items-item').forEach((item) => {
 
 		card.innerHTML = renderCardHTML(data)
 
-		drag(card)
+		dragndrop()
 	})
 })

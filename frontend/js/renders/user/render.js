@@ -33,14 +33,15 @@ const renderCardHTML = (user) => {
 
 	const foundColor = paintElement(firstCharacter)
 
-	return `<div class="popup-card-dragndrop"></div>
+	return `<div class="popup-card__wrapper">
+		<div class="popup-card-dragndrop" style="background-color: ${foundColor}"></div>
 		<div class="popup-card__photo" style="background-color: ${foundColor}">${firstCharacter}</div>
         <p class="popup-card__FIO">${buildUserName(user)}</p>
         <div class="popup-card-details">${renderUserFields(user, 'edit')}</div>
         <div class="popup-card-btns">
-            <button id="${user._id}" class="popup-card-btns__refactor">Редактировать</button>
             <button id="${user._id}" class="popup-card-btns__delete">Удалить</button>
-        </div>`
+        </div>
+		</div>`
 }
 
 export { renderCardHTML, renderUser }
