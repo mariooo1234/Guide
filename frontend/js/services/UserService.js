@@ -24,7 +24,7 @@ class UserService {
 
 			/** @function
 			 * @name list - Получение списка пользователей */
-			list: () => http.get(this.path.users()),
+			list: (params) => http.get(this.path.users(), { params }),
 
 			/** @function
 			 * @name create - Создание пользователя

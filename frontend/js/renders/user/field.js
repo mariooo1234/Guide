@@ -5,33 +5,48 @@ const userInfo = [
 		id: 'age',
 		label: 'Возраст',
 		key: 'age',
-		disabled: false,
-		className: 'popup-card-details-item',
+		disabled: true,
 	},
 	{
 		id: 'address',
 		label: 'Адрес',
 		key: 'address',
 		disabled: false,
-		className: 'popup-card-details-item',
 	},
 	{
 		id: 'post',
 		label: 'Должность',
 		key: 'post',
 		disabled: false,
-		className: 'popup-card-details-item',
+	},
+	{
+		id: 'name',
+		label: 'Имя',
+		key: 'name',
+		disabled: false,
+		edit: false,
 	},
 ]
 
 /** @function
+ * @name setBlockedField - Установка блокировки поля
+ * @param {boolean} isBlocked - Заблокировано ли поле */
+const setBlockedField = (isBlocked) => {
+	return isBlocked ? 'disabled' : ''
+}
+
+/** @function
  * @name renderFields - Рендеринг полей
- * @param {array} fields - Поля пользователя
+ * @param {string} mode - Мод
  * @param {object} user - Информация пользователя */
-const renderUserFields = (fields, user) => {
-	return fields.reduce((acc, field) => {
+const renderUserFields = (user, mode = '') => {
+	const filteredFields = userInfo.filter((field) => {
+		return !Object.hasOwn(field, mode) || field[mode]
+	})
+
+	return filteredFields.reduce((acc, field) => {
 		acc += `<label for="${field.id}">${field.label}:</label>
-            <input disabled id="${field.id}" class="${field.className}" value="${user[field.key]}" >
+            <input ${setBlockedField(field.disabled)} id="${field.id}" class="popup-card-details-item" value="${user[field.key] ?? ''}" >
 		`
 
 		return acc
