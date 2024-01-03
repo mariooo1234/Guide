@@ -3,9 +3,9 @@ import UserService from '../services/UserService.js'
 class UserController {
 	async create(req, res) {
 		try {
-			const article = await UserService.create(req.body)
+			const user = await UserService.create(req.body)
 
-			res.json(article)
+			res.json(user)
 		} catch (e) {
 			res.status(500).json(e)
 		}
@@ -13,9 +13,9 @@ class UserController {
 
 	async get(req, res) {
 		try {
-			const foundArticle = await UserService.get(req.params.id)
+			const foundUser = await UserService.get(req.params.id)
 
-			res.json(foundArticle)
+			res.json(foundUser)
 		} catch (e) {
 			res.status(500).json(e)
 		}
@@ -25,11 +25,7 @@ class UserController {
 		try {
 			const users = await UserService.list(req.query)
 
-			const filteredUsers = users.filter(user => {
-				return user.name.toLowerCase().includes(req.query.name)
-			})
-
-			res.json(filteredUsers)
+			res.json(users)
 		} catch (e) {
 			res.status(500).json(e)
 		}
@@ -49,8 +45,7 @@ class UserController {
 		try {
 			const user = await UserService.update(req.params.id, req.body)
 
-			res.status(200)
-			res.send(user)
+			res.status(200).json(user)
 		} catch (e) {
 			res.status(500).json(e)
 		}

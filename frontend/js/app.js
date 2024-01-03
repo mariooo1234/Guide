@@ -1,7 +1,7 @@
 /** @class UserService - Сервис для работы с пользователями */
 import UserService from './services/UserService.js'
 
-import { dragndrop } from './modal/modal.js'
+import { Modal } from './modal/modal.js'
 
 /** @module UserRender - Пользовательский редеринг */
 import { renderUser, renderCardHTML } from './renders/user/render.js'
@@ -12,7 +12,7 @@ import {animCounter} from './animations/animation.js'
 const userGuide = document.querySelector('.users-data-items')
 
 const popup = document.querySelector('.popup')
-const card = document.querySelector('.popup-card')
+const card = document.querySelector('.modal')
 
 const counter = document.querySelector('.users-data__counter span')
 
@@ -20,12 +20,12 @@ const loader = document.querySelector('.loader')
 
 /** @callback - Обработчик закрытия popup-окна */
 popup.addEventListener('click', ({ target }) => {
-	if (!target.closest('.popup-card') && !target.closest('.popup-card-btns') || target.closest('.popup-card-btns__cansel')) {
+	if (!target.closest('.modal') && !target.closest('.modal-btns') || target.closest('.modal-btns__cansel')) {
 		popup.classList.remove('open')
 	}
 })
 
-const { data } = await UserService.users.list({ name: '' })
+const { data } = await UserService.users.list({ name: null })
 
 loader.style.display = 'none'
 
@@ -37,16 +37,6 @@ counter.textContent = data.length
 
 animCounter(counter)
 
-gsap.registerPlugin(Draggable, InertiaPlugin)
-
-Draggable.create('.preview__title-text', {
-	bounds: 'body',
-	inertia: true,
-	onClick: function () {
-		console.log('clicked')
-	},
-})
-
 document.querySelectorAll('.users-data-items-item').forEach((item) => {
 	item.addEventListener('click', async () => {
 		const { data } = await UserService.users.get(item.id)
@@ -55,6 +45,9 @@ document.querySelectorAll('.users-data-items-item').forEach((item) => {
 		
 		card.innerHTML = renderCardHTML(data)
 
-		dragndrop()
+		const dragBlock = document.querySelector('.modal-dragndrop')
+
+		const dragModal = new Modal(card, dragBlock)
+		dragModal.start()
 	})
 })

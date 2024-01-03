@@ -20,8 +20,8 @@ class UserService {
 
 	/** @method
 	 * @name list - Получение cписка всех пользователей */
-	list() {
-		return UserModel.find()
+	list(query) {
+		return UserModel.find(query, undefined, undefined)
 	}
 
 	/** @method
@@ -35,10 +35,8 @@ class UserService {
 	 * @name update - Удаление пользователя
 	 * @param id - Идентификатор пользователя
 	 * @param payload - Обновляемые параметры */
-	async update(id, payload) {
-		await UserModel.findOneAndUpdate({ _id: id }, payload)
-
-		return UserModel.findById(id)
+	update(id, payload) {
+		return UserModel.findOneAndUpdate({ _id: id }, payload, { new: true })
 	}
 }
 

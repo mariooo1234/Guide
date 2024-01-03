@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const UserModel = new mongoose.Schema({
 	name: { type: String, required: true },
@@ -7,5 +7,5 @@ const UserModel = new mongoose.Schema({
 	age: { type: Number, required: false },
 	address: { type: String, required: false },
 	post: { type: String, required: false },
-});
-export default mongoose.model('User', UserModel);
+})
+export default mongoose.model('User', UserModel)
