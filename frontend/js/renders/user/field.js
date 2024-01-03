@@ -46,7 +46,7 @@ const renderUserFields = (user, mode = '') => {
 
 	return filteredFields.reduce((acc, field) => {
 		acc += `<label for="${field.id}">${field.label}:</label>
-            <input ${setBlockedField(field.disabled)} id="${field.id}" class="popup-card-details-item" value="${user[field.key] ?? ''}" >
+            <input ${setBlockedField(field.disabled)} id="${field.id}" class="modal-details-item" value="${user[field.key] ?? ''}" >
 		`
 
 		return acc
