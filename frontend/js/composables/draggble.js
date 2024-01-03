@@ -28,32 +28,29 @@ export class Draggable {
 	/** @method
 	 * @name mouseCapture - Захват мышкой элемента триггера перетаскивания
 	 * @param {Event} event - Объект события */
-	mouseCapture(event) {
+	mouseCapture({clientX, clientY, type}) {
 		const actions = {
 			mouseup: () => document.removeEventListener('mousemove', this.moving),
 			mousedown: () => document.addEventListener('mousemove', this.moving)
 		}
 
-		actions[event.type]()
+		actions[type]()
 
 		const { left, top} = this.dragElement.getBoundingClientRect()
 
-		this.offsetX = event.clientX - left
-		this.offsetY = event.clientY - top
+		this.offsetX = clientX - left
+		this.offsetY = clientY - top
 	}
 
 	/** @method
 	 * @name computeCoords - Расчёт координат элемента
 	 * @param {number} axis - Ось перетаскивания
-	 * @param {number} window - Размер окна
-	 * @param {number} element - Размер элемента */
-	computeCoords(axis, window, element) {
-		const availableAxis = window - element
+	 * @param {number} windowSize - Размер окна
+	 * @param {number} elementSize - Размер элемента */
+	computeCoords(axis, windowSize, elementSize) {
+		const availableAxis = windowSize - elementSize
 
-		if (axis <= 0) return '0px'
-		else if (availableAxis <= axis) return `${availableAxis}px`
-
-		return `${axis}px`
+		return axis <= 0 ? '0px' : (availableAxis <= axis ? `${availableAxis}px` : `${axis}px`)
 	}
 
 	/** @method
