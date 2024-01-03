@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&family=Montserrat:ital,wght@0,400;1,200;1,300&family=Roboto:wght@300;400;500&display=swap");
+/* Reset and base styles  */
 * {
   padding: 0;
   margin: 0;
@@ -11,30 +12,20 @@
   box-sizing: border-box;
 }
 
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 /* Links */
 a, a :link, a :visited {
   text-decoration: none;
   color: inherit;
 }
-
 a:hover {
   text-decoration: none;
 }
 
 /* Common */
-/*aside, nav, footer, header, section, main {*/
-/*  display: block;*/
-/*}*/
+aside, nav, footer, header, section, main {
+  display: block;
+}
+
 h1, h2, h3, h4, h5, h6, p {
   font-size: inherit;
   font-weight: inherit;
@@ -58,7 +49,7 @@ address {
 }
 
 /* Form */
-input, textarea, button, select, pre {
+input, textarea, button, select {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -90,6 +81,16 @@ label {
 
 legend {
   display: block;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -145,6 +146,7 @@ main {
 }
 
 .preview__title-text {
+  position: absolute;
   font-family: Roboto, sans-serif;
   font-weight: 500;
   font-size: 40px;
@@ -192,120 +194,11 @@ main {
   margin-right: 10px;
 }
 
-.users-tools__input-checkbox-label {
-  position: relative;
-  width: 70px;
-  height: 40px;
-}
-
 .users-tools__input-checkbox {
   position: relative;
   z-index: 1;
   appearance: none;
   cursor: pointer;
-}
-
-.users-tools__input-checkbox-label span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ff0900;
-  border-radius: 80px;
-  transition: 0.5s;
-  opacity: 0.77;
-}
-
-.users-tools__input-checkbox-label input:checked ~ span {
-  background: #26e826;
-}
-
-.users-tools__input-checkbox-label span i {
-  top: 4px;
-  left: 4px;
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  background: #FFF;
-  border-radius: 50%;
-  transition: 0.5s;
-}
-
-.users-tools__input-checkbox-label input:checked ~ span i {
-  left: 34px;
-}
-
-.users-tools__input-checkbox-label span i::before {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 5px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #ff0900;
-  box-shadow: 15px 0 0 #ff0900;
-  transition: 0.5s;
-}
-
-.users-tools__input-checkbox-label input:checked ~ span i::before {
-  background: #26e826;
-  box-shadow: 15px 0 0 #26e826;
-}
-
-.users-tools__input-checkbox-label span i::after {
-  content: "";
-  position: absolute;
-  bottom: 8px;
-  left: 9px;
-  width: 15px;
-  height: 4px;
-  border-radius: 6px;
-  background: #ff0900;
-  transition: 0.5s;
-}
-
-.users-tools__input-checkbox-label input:checked ~ span i::after {
-  bottom: 7px;
-  height: 8px;
-  border-radius: 0;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background: #26e826;
-}
-
-.users-tools__input-number-block {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  width: 80px;
-}
-
-.users-tools__input-number-block-par {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.users-tools__input-number-arrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15px;
-  height: 15px;
-  border: 1px solid;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.5s ease;
-}
-
-.users-tools__input-number-arrow:hover:nth-child(1) {
-  background-color: green;
-}
-
-.users-tools__input-number-arrow:hover:nth-last-child(1) {
-  background-color: red;
 }
 
 .users-tools-sort {
@@ -327,6 +220,7 @@ main {
   border: 1.2px solid #DDDDDD;
   outline: none;
   border-radius: 0.5em;
+  transition: all 0.5s;
 }
 
 .users-tools__input-search:focus ~ label,
@@ -338,8 +232,7 @@ main {
 
 .users-tools__input-search:focus,
 .users-tools__input-search:valid {
-  border: 2px solid blue;
-  transition: 0.5s;
+  border: 1px solid blue;
 }
 
 .users-tools__input-search-label {
@@ -403,9 +296,6 @@ main {
 }
 
 .users-tools-sort-dropdown * {
-  /*display: flex;*/
-  /*flex-flow: column nowrap;*/
-  /*justify-content: ;*/
   box-sizing: border-box;
 }
 
@@ -524,25 +414,12 @@ main {
   background: #eef4fa;
 }
 
-.active {
-  background: #eef4fa;
-}
-
 .users-tools-sort-dropdown__menu-open {
   display: block;
   opacity: 1;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
 }
 
-/*.users-tools-sort-list {*/
-/*  align-content: center;*/
-/*  justify-content: center;*/
-/*  width: 100px;*/
-/*  height: 30px;*/
-/*  border-radius: 5px;*/
-/*  border: 1px solid #999999;*/
-/*  margin-left: 5px;*/
-/*}*/
 .users-data {
   position: relative;
 }
@@ -589,46 +466,6 @@ main {
   justify-content: center;
 }
 
-.users-addItem {
-  display: block;
-}
-
-.users-addItem-inputBlock {
-  position: relative;
-  left: -50px;
-  opacity: 0;
-}
-
-.users-addItem-inputBlock.active {
-  display: flex;
-}
-
-.users-addItem-inputBlock__input {
-  width: 100%;
-  height: 30px;
-  padding: 0 10px;
-  background-color: #ffcfcf;
-  border-radius: 5px;
-  border: 1px solid black;
-  margin-bottom: 20px;
-}
-
-.users-addItem-inputBlock__input:not(:placeholder-shown) {
-  background-color: white;
-}
-
-.users-addItem-inputBlock__trash {
-  width: 30px;
-  height: 30px;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .preview__title-btn {
   width: 40px;
   height: 40px;
@@ -667,12 +504,13 @@ main {
   user-select: none;
 }
 
-.popup-card__wrapper {
+.modal__wrapper {
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 24px;
 }
-.popup-card__wrapper-overlay::before {
+.modal__wrapper-overlay::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -682,21 +520,26 @@ main {
   opacity: 0.4;
   cursor: not-allowed;
 }
+.modal__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-.popup-card {
+.modal {
   width: 500px;
   height: auto;
   background-color: #fff;
   position: absolute;
   border-radius: 10px;
   box-shadow: 0 25px 100px #999999;
-  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.popup-card-dragndrop {
+.modal-dragndrop {
   position: absolute;
   left: 0;
   top: 0;
@@ -707,7 +550,7 @@ main {
   cursor: grab;
 }
 
-.popup-card__photo {
+.modal__photo {
   color: #ffffff;
   border-radius: 50%;
   height: 150px;
@@ -722,13 +565,13 @@ main {
   margin-top: 40px;
 }
 
-.popup-card__name {
+.modal__name {
   font-size: 20px;
   text-align: center;
   text-transform: capitalize;
 }
 
-.popup-card-details {
+.modal-details {
   width: 100%;
   height: auto;
   border-top: 1px solid #999999;
@@ -736,11 +579,11 @@ main {
   margin: 30px 0;
   padding: 20px 10px;
 }
-.popup-card-details label {
+.modal-details label {
   color: #797676;
 }
 
-.popup-card-details-item {
+.modal-details-item {
   height: 30px;
   margin-bottom: 20px;
   display: flex;
@@ -752,46 +595,39 @@ main {
   border: 1px solid #797676;
   margin-top: 5px;
 }
-.popup-card-details-item:invalid {
+.modal-details-item:invalid {
   border: 1px solid red;
 }
 
-.popup-card-details-item::placeholder {
+.modal-details-item::placeholder {
   color: #797676;
 }
 
-.popup-card-details-item:disabled {
+.modal-details-item:disabled {
   background-color: inherit;
 }
 
-.popup-card-btns {
+.modal-btns {
   display: flex;
   justify-content: space-around;
   width: 100%;
 }
 
-.popup-card-btns__refactor, .popup-card-btns__save {
+.modal-btns__refactor, .modal-btns__save {
   background-color: #87CEEB;
 }
 
-.popup-card-btns__delete, .popup-card-btns__cansel {
+.modal-btns__delete, .modal-btns__cansel {
   background-color: #F08080;
 }
 
-.popup-card-btns button {
-  width: 200px;
-  height: 30px;
+.modal-btns button {
+  padding: 5px 20px;
   border-radius: 5px;
-  border: 1px solid black;
 }
 
-.popup-card-btns button:not(:last-child) {
+.modal-btns button:not(:last-child) {
   margin-bottom: 20px;
-}
-
-/*# sourceMappingURL=main.css.map */
-aside, nav, footer, header, section, main {
-  display: block;
 }
 
 .loader {

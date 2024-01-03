@@ -1,7 +1,7 @@
 /** @class UserService - Сервис для работы с пользователями */
 import UserService from './services/UserService.js'
 
-import { Modal } from './modal/modal.js'
+import {Draggable} from './composables/draggble.js'
 
 /** @module UserRender - Пользовательский редеринг */
 import { renderUser, renderCardHTML } from './renders/user/render.js'
@@ -25,17 +25,24 @@ popup.addEventListener('click', ({ target }) => {
 	}
 })
 
-const { data } = await UserService.users.list({ name: null })
+const { data } = await UserService.users.list({ name: 'Kirill' })
 
 loader.style.display = 'none'
 
 data.forEach((user) => userGuide.innerHTML += renderUser(user))
 
-gsap.to('.users-data-items-item', {opacity: 1, stagger: 0.05, left: 0, duration: 0.25})
+gsap.to('.users-data-items-item', { opacity: 1, stagger: 0.05, left: 0, duration: 0.25 })
 
 counter.textContent = data.length
 
 animCounter(counter)
+
+const computeCenter = () => {
+	const { clientWidth, clientHeight } = document.documentElement
+
+	card.style.left = ((clientWidth - card.clientWidth) / 2) + 'px'
+	card.style.top = ((clientHeight - card.clientHeight) / 2) + 'px'
+}
 
 document.querySelectorAll('.users-data-items-item').forEach((item) => {
 	item.addEventListener('click', async () => {
@@ -47,7 +54,7 @@ document.querySelectorAll('.users-data-items-item').forEach((item) => {
 
 		const dragBlock = document.querySelector('.modal-dragndrop')
 
-		const dragModal = new Modal(card, dragBlock)
-		dragModal.start()
+		const Modal = new Draggable(card, dragBlock)
+		Modal.onDragStart(computeCenter)
 	})
 })
