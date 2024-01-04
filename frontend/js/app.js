@@ -20,7 +20,7 @@ const loader = document.querySelector('.loader')
 
 /** @callback - Обработчик закрытия popup-окна */
 popup.addEventListener('click', ({ target }) => {
-	if (!target.closest('.modal') && !target.closest('.modal-btns') || target.closest('.modal-btns__cansel')) {
+	if (!target.closest('.modal') && !target.closest('.modal-btns') || target.closest('.modal-btns__canсel')) {
 		popup.classList.remove('open')
 	}
 })
