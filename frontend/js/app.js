@@ -20,7 +20,7 @@ const loader = document.querySelector('.loader')
 
 /** @callback - Обработчик закрытия popup-окна */
 popup.addEventListener('click', ({ target }) => {
-	if (!target.closest('.modal') && !target.closest('.modal-btns') || target.closest('.modal-btns__canсel')) {
+	if (!target.closest('.modal') && !target.closest('.modal__btns') || target.closest('.modal__btns_canсel')) {
 		popup.classList.remove('open')
 	}
 })
@@ -31,13 +31,13 @@ loader.style.display = 'none'
 
 data.forEach((user) => userGuide.innerHTML += renderUser(user))
 
-gsap.to('.users-data-items-item', {opacity: 1, stagger: 0.05, left: 0, duration: 0.25})
+gsap.to('.users-data__items_item', {opacity: 1, stagger: 0.05, left: 0, duration: 0.25})
 
 counter.textContent = data.length
 
 animCounter(counter)
 
-document.querySelectorAll('.users-data-items-item').forEach((item) => {
+document.querySelectorAll('.users-data__items_item').forEach((item) => {
 	item.addEventListener('click', async () => {
 		const { data } = await UserService.users.get(item.id)
 

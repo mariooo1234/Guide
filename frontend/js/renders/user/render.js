@@ -25,7 +25,7 @@ const paintElement = (firstCharacter) => {
 }
 
 const renderUser = (user) => {
-	return `<div class="users-data-items-item" id="${user._id}">${buildUserName(user)}</div>`
+	return `<div class="users-data__items_item" id="${user._id}">${buildUserName(user)}</div>`
 }
 
 const renderCardHTML = (user) => {
@@ -40,8 +40,8 @@ const renderCardHTML = (user) => {
         	<p class="modal__name">${buildUserName(user)}</p>
 		</div>
         <div class="modal-details">${renderUserFields(user, 'edit')}</div>
-        <div class="modal-btns">
-            <button id="${user._id}" class="modal-btns__delete">Удалить</button>
+        <div class="modal__btns">
+            <button id="${user._id}" class="modal__btns_delete">Удалить</button>
         </div>
 		</div>`
 }

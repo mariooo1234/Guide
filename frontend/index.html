@@ -16,15 +16,52 @@
 <header>
     <div class="container">
         <div class="header-wrapper">
-            <div class="header-nav">
-                <ul class="header-nav__list">
-                    <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Home</a></li>
-                    <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">About us</a></li>
-                    <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Services</a></li>
-                    <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Partners</a></li>
-                    <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Contact</a></li>
-                </ul>
-            </div>
+            <nav class="header-nav">
+                <div class="header-nav__logo">
+                    <img src="img/icons/genie-lamp-logo.svg" alt="">
+                    <div> <b><span>G</span>uide</b></div>
+                </div>
+                <div class="header-nav__btns">
+                    <ul class="header-nav__list">
+                        <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Home</a></li>
+                        <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">About us</a></li>
+                        <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Services</a></li>
+                        <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Partners</a></li>
+                        <li class="header-nav__list-item"><a href="#" class="header-nav__list-link">Contact</a></li>
+                    </ul>
+
+                    <img src="img/icons/human-head.svg" alt="" class="user__pic" onclick="toggleMenu()">
+
+                    <div class="header-nav_user__menu-wrapper" id="subMenu">
+                        <div class="header-nav_user__menu">
+                            <div class="user__info">
+                                <img src="img/icons/human-head-size-m.svg" alt="">
+                                <h2>Oleg Tinkoff</h2>
+                            </div>
+                            <a href="#" class="user_menu__link">
+                                <img src="img/icons/profile.png" alt="">
+                                <p>Edit Profile</p>
+                                <span> > </span>
+                            </a>
+                            <a href="#" class="user_menu__link">
+                                <img src="img/icons/setting.png" alt="">
+                                <p>Settings & Privacy</p>
+                                <span> > </span>
+                            </a>
+                            <a href="#" class="user_menu__link">
+                                <img src="img/icons/help.png" alt="">
+                                <p>Help & Support</p>
+                                <span> > </span>
+                            </a>
+                            <a href="#" class="user_menu__link">
+                                <img src="img/icons/logout.png" alt="">
+                                <p>Logout</p>
+                                <span> > </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </header>
@@ -91,6 +128,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Flip.min.js"></script>
     <script type="module" src="js/app.js"></script>
     <script src="js/controls/dropdown.js"></script>
+    <script src="js/controls/usermenu.js"></script>
 
 </main>
 <footer>

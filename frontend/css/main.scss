@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&family=Montserrat:ital,wght@0,400;1,200;1,300&family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import "module/zeroing.scss";
 
 .container {
@@ -23,27 +24,133 @@ header {
   width: 100%;
   top: 0;
   z-index: 10;
-  background: white;
+  background: linear-gradient(-15deg, rgba(74, 63, 171, 0.46), #0969e1, #ac61de);
+}
+
+main {
+  margin-top: 100px;
 }
 
 .header-wrapper {
   display: flex;
   position: relative;
   align-items: center;
-  padding: 28px 0;
+  padding: 20px 0;
 }
 
 .header-nav {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #9F64EC;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: default;
+    & span {
+      color: #4d9ada;
+    }
+  }
+  &__btns {
+    display: flex;
+  }
   &__list {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+    color: white;
+    padding-right: 100px;
+    white-space: pre;
+  }
+  &_user {
+    display: flex;
+
+    margin-left: 50px;
+    & img {
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 }
 
-main {
-  margin-top: 76px;
+.user__pic {
+  width: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.header-nav_user__menu-wrapper {
+  position: absolute;
+  top: 100%;
+  right: 5%;
+  width: 320px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+
+.header-nav_user__menu-wrapper.open-menu {
+  max-height: 400px;
+}
+
+.header-nav_user__menu {
+  background: #eef4fa;
+  padding: 10px;
+  margin: 10px;
+  max-height: 400px;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+
+.user__info {
+  display: flex;
+  align-items: center;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #CCCCCC;
+  & img {
+    max-width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  & h2 {
+    font-family: Bebas neue, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+  }
+}
+
+.user_menu__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #525252;
+  margin: 12px 0;
+  & p {
+    width: 100%;
+  }
+  & img {
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+  }
+  & span {
+    font-size: 22px;
+    transition: .5s;
+  }
+}
+
+.user_menu__link:hover span {
+  transform: translateX(5px);
+}
+.user_menu__link:hover p {
+  font-weight: 500;
 }
 
 .preview-wrapper {
@@ -288,7 +395,7 @@ main {
 
 // Классы карточек с лоудера, их нету в самом HTML-документе
 
-.users-data-items-item {
+.users-data__items_item {
   height: 30px;
   margin-bottom: 20px;
   display: flex;
@@ -430,12 +537,12 @@ main {
       }
     }
   }
-  &-btns {
+  &__btns {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    &__delete,
-    &__cancel {
+    &_delete,
+    &_cancel {
       background-color: #F08080;
     }
     & button {
